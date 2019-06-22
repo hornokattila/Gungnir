@@ -8,9 +8,7 @@ settings: Dict = {
         "host": "0.0.0.0",
         "port": 5000,
     },
-    "api": {
-        "logger": {
-            "folder": "logger"
-        }
+    "logger.py": {
+        "folder": "logger"
     }
 }

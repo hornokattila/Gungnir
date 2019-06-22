@@ -7,5 +7,10 @@ settings: Dict = {
         "debug": False,
         "host": "0.0.0.0",
         "port": 5000,
+    },
+    "api": {
+        "logger": {
+            "folder": "logger"
+        }
     }
 }

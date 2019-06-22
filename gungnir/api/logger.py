@@ -1,6 +1,9 @@
 import flask
 
+from util.Settings import Settings
+
 logger: flask.Blueprint = flask.Blueprint("logger", __name__)
+settings: Settings = Settings(__file__)
 
 
 @logger.route("/loggers")

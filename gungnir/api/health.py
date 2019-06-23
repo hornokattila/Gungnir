@@ -1,6 +1,12 @@
-import flask
+from util.Blueprint import Blueprint
 
-health: flask.Blueprint = flask.Blueprint("health", __name__)
+
+class Health(Blueprint):
+    def init(self) -> None:
+        pass
+
+
+health: Health = Health(__file__, __name__)
 
 
 @health.route("/health")

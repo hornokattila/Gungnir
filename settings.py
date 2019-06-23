@@ -1,8 +1,6 @@
 import typing
 
-Dict: typing.Type["Dict"] = typing.Dict[str, typing.Union[bool, int, str, typing.Dict[str, typing.Type["Dict"]], typing.List[typing.Type["Dict"]]]]
-
-settings: Dict = {
+settings: typing.Dict[str, typing.Dict[str, typing.Union[bool, int, str]]] = {
     "wsdl": {
         "debug": False,
         "host": "0.0.0.0",

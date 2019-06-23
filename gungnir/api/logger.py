@@ -5,7 +5,7 @@ from utils.Blueprint import Blueprint
 
 class Logger(Blueprint):
     def init(self) -> None:
-        if not os.path.exists(self.settings["folder"]):
+        if not os.path.isdir(self.settings["folder"]):
             os.makedirs(self.settings["folder"])
 
 

@@ -9,7 +9,7 @@ class Logger(Blueprint):
             os.makedirs(self.settings["folder"])
 
 
-logger: Logger = Logger(__file__, __name__)
+logger: Logger = Logger("logger", __name__)
 
 
 @logger.route("/loggers")

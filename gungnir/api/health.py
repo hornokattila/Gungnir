@@ -6,7 +6,7 @@ class Health(Blueprint):
         pass
 
 
-health: Health = Health(__file__, __name__)
+health: Health = Health("health", __name__)
 
 
 @health.route("/health")

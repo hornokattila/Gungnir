@@ -6,7 +6,7 @@ settings: typing.Dict[str, typing.Dict[str, typing.Union[bool, int, str]]] = {
         "host": "0.0.0.0",
         "port": 5000,
     },
-    "logger.py": {
-        "folder": "logger"
+    "logger": {
+        "folder": "out/logger"
     }
 }

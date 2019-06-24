@@ -8,5 +8,8 @@ settings: typing.Dict[str, typing.Dict[str, typing.Union[bool, int, str]]] = {
     },
     "logger": {
         "folder": "out/logger"
+    },
+    "upload": {
+        "folder": "out/upload"
     }
 }

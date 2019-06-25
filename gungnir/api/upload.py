@@ -1,4 +1,5 @@
 import os
+import typing
 
 from utils.Blueprint import Blueprint
 
@@ -17,6 +18,12 @@ def _uploads() -> str:
     return upload.flask.json.dumps(os.listdir(upload.settings["folder"]))
 
 
-@upload.route("/upload")
+@upload.route("/upload", methods=["POST"])
 def _upload() -> str:
-    return ""
+    results: typing.List[str] = []
+    for filename in upload.flask.request.files:
+        path: str = os.path.join(upload.settings["folder"], filename)
+        if not os.path.isfile(path):
+            upload.flask.request.files[filename].save(path)
+            results.append(filename)
+    return upload.flask.json.dumps(results)

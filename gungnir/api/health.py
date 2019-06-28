@@ -1,4 +1,4 @@
-from utils.Blueprint import Blueprint
+from util.Blueprint import Blueprint
 
 
 class Health(Blueprint):

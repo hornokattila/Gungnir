@@ -2,7 +2,7 @@ import typing
 
 import flask
 
-from utils.Blueprint import Blueprint
+from util.Blueprint import Blueprint
 
 
 class Flask(flask.Flask):

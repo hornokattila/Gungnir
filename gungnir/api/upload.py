@@ -1,7 +1,7 @@
 import os
 import typing
 
-from utils.Blueprint import Blueprint
+from util.Blueprint import Blueprint
 
 
 class Upload(Blueprint):

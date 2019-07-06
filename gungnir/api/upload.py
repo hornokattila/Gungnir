@@ -15,15 +15,19 @@ upload: Upload = Upload("upload", __name__)
 
 @upload.route("/uploads")
 def _uploads() -> str:
-    return upload.flask.json.dumps(os.listdir(upload.settings["folder"]))
+    uploads: typing.Dict[str, typing.Dict[str, int]] = {}
+    for file in os.scandir(upload.settings["folder"]):
+        uploads[file.name] = dict(zip(("mode", "ino", "dev", "nlink", "uid", "gid", "size", "atime", "mtime", "ctime"), file.stat()))
+    return upload.flask.json.dumps(uploads)
 
 
 @upload.route("/upload", methods=["POST"])
 def _upload() -> str:
-    results: typing.List[str] = []
-    for filename in upload.flask.request.files:
-        path: str = os.path.join(upload.settings["folder"], filename)
+    uploads: typing.List[str] = []
+    for file in upload.flask.request.files:
+        name: str = upload.werkzeug.utils.secure_filename(file)
+        path: str = os.path.join(upload.settings["folder"], name)
         if not os.path.isfile(path):
-            upload.flask.request.files[filename].save(path)
-            results.append(filename)
-    return upload.flask.json.dumps(results)
+            upload.flask.request.files[name].save(path)
+            uploads.append(name)
+    return upload.flask.json.dumps({"uploads": uploads})

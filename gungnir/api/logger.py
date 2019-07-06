@@ -1,6 +1,6 @@
 import os
 
-from util.Blueprint import Blueprint
+from utils.Blueprint import Blueprint
 
 
 class Logger(Blueprint):

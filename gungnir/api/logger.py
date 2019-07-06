@@ -17,6 +17,6 @@ def _loggers() -> str:
     return logger.flask.json.dumps(os.listdir(logger.settings["folder"]))
 
 
-@logger.route("/logger/<path:filename>")
-def _logger(filename: str) -> str:
-    return logger.flask.send_from_directory(logger.settings["folder"], filename)
+@logger.route("/logger/<path:file>")
+def _logger(file: str) -> str:
+    return logger.flask.send_from_directory(logger.settings["folder"], file)

@@ -1,3 +1,5 @@
+import os
+
 from utils.Blueprint import Blueprint
 
 
@@ -11,6 +13,8 @@ submit: Submit = Submit("submit", __name__)
 
 @submit.route("/status")
 def _status() -> str:
+    if os.path.isdir(submit.settings["folder"]):
+        return submit.flask.json.dumps(os.listdir(submit.settings["folder"]))
     return ""
 
 

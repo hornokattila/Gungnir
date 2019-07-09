@@ -1,4 +1,5 @@
 import os
+import uuid
 
 from utils.Blueprint import Blueprint
 
@@ -20,4 +21,12 @@ def _status() -> str:
 
 @submit.route("/submit", methods=["POST"])
 def _submit() -> str:
+    if not os.path.isdir(submit.settings["folder"]):
+        try:
+            os.makedirs(submit.settings["folder"])
+            name: str = uuid.uuid4().hex
+            path: str = os.path.join(submit.settings["folder"], name)
+            return name
+        except OSError:
+            pass
     return ""

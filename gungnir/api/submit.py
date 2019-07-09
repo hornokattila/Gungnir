@@ -9,6 +9,11 @@ class Submit(Blueprint):
 submit: Submit = Submit("submit", __name__)
 
 
-@submit.route("/submit")
+@submit.route("/status")
+def _status() -> str:
+    return ""
+
+
+@submit.route("/submit", methods=["POST"])
 def _submit() -> str:
     return ""

@@ -3,4 +3,4 @@ import urls
 import wsdl
 
 if __name__ == "__main__":
-    wsdl.Flask(__name__).run(urls=urls.urls, version=urls.version, **settings.settings["wsdl"])
+    wsdl.Flask(__name__).run(version=urls.version, **settings.settings["wsdl"], urls=urls.urls)

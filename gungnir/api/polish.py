@@ -13,5 +13,6 @@ polish: Polish = Polish("polish", __name__)
 def _polish() -> str:
     return Housekeeper(
         polish.executor,
+        polish.settings["polish"],
         polish.settings["submit"]["folder"],
         polish.settings["upload"]["folder"]).attach()

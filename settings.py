@@ -5,6 +5,8 @@ settings: typing.Dict[str, typing.Union[typing.Dict[str, typing.Dict[str, str]],
         "logger": {
             "folder": "out/logger"
         },
+        "polish": {
+        },
         "submit": {
             "folder": "out/submit"
         },

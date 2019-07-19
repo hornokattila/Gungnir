@@ -4,9 +4,7 @@ from utils.Blueprint import Blueprint
 
 
 class Whiteprint(Blueprint):
-    def __init__(self, name: str, import_name: str) -> None:
-        self.executor: ThreadPoolExecutor = ThreadPoolExecutor(1)
-        super().__init__(name, import_name)
+    executor: ThreadPoolExecutor = ThreadPoolExecutor(1)
 
     def init(self) -> None:
         pass

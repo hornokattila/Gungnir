@@ -1,12 +1,11 @@
 import os
 
 from services.Executor import Executor
-from utils.Blueprint import Blueprint
+from utils.Whiteprint import Whiteprint
 
 
-class Submit(Blueprint):
-    def init(self) -> None:
-        pass
+class Submit(Whiteprint):
+    pass
 
 
 submit: Submit = Submit("submit", __name__)
@@ -22,6 +21,7 @@ def _status() -> str:
 @submit.route("/submit", methods=["POST"])
 def _submit() -> str:
     return Executor(
+        submit.executor,
         submit.settings["logger"]["folder"],
         submit.settings["submit"]["folder"],
         submit.settings["upload"]["folder"]).submit(submit.flask.request.json)

@@ -5,9 +5,8 @@ from concurrent.futures.thread import ThreadPoolExecutor
 
 
 class Executor:
-    executor: ThreadPoolExecutor = ThreadPoolExecutor(1)
-
-    def __init__(self, logger_folder: str, submit_folder: str, upload_folder: str) -> None:
+    def __init__(self, executor: ThreadPoolExecutor, logger_folder: str, submit_folder: str, upload_folder: str) -> None:
+        self.executor: ThreadPoolExecutor = executor
         self.logger_folder: str = logger_folder
         self.submit_folder: str = submit_folder
         self.upload_folder: str = upload_folder

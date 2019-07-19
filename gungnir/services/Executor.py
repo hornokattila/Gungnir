@@ -22,7 +22,7 @@ class Executor:
             upload_path: str = os.path.abspath(self.upload_folder)
             with open(submit_path, "x") as file:
                 file.write(json["script"])
-            self.executor.submit(os.system, "{0} {1} &> {2}".format(submit_path, upload_path, logger_path))
+            self.executor.submit(os.system, "{0} {1} > {2}".format(submit_path, upload_path, logger_path))
             self.executor.submit(os.remove, submit_path)
             self.executor.submit(os.removedirs, self.submit_folder)
             return name

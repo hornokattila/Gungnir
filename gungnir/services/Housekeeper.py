@@ -10,4 +10,4 @@ class Housekeeper:
         self.upload_folder: str = upload_folder
 
     def attach(self) -> str:
-        pass
+        return ""

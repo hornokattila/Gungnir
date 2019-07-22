@@ -9,7 +9,7 @@ class Polish(Whiteprint):
 polish: Polish = Polish("polish", __name__)
 
 
-@polish.route("/polish")
+@polish.route("/polish", methods=["POST"])
 def _polish() -> str:
     return Housekeeper(
         polish.executor,

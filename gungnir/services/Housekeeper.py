@@ -1,3 +1,4 @@
+import os
 import typing
 from concurrent.futures.thread import ThreadPoolExecutor
 
@@ -11,6 +12,9 @@ class Housekeeper:
     def attach(self, json: typing.Dict[str, str]) -> str:
         try:
             self.validate(json)
+            for file in os.scandir(self.upload_folder):
+                if file.stat().st_size.__gt__(json["max_size"]):
+                    pass
         except OSError:
             pass
         return ""

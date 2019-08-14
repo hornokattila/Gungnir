@@ -30,4 +30,4 @@ def _upload() -> str:
         if not os.path.isfile(path):
             upload.flask.request.files[name].save(path)
             uploads.append(name)
-    return upload.flask.json.dumps({"uploads": uploads})
+    return upload.flask.json.dumps(uploads)

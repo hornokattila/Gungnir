@@ -11,7 +11,7 @@ polish: Polish = Polish("polish", __name__)
 
 @polish.route("/polish", methods=["POST"])
 def _polish() -> str:
-    return Housekeeper(
+    return polish.flask.json.dumps(Housekeeper(
         polish.executor,
         polish.settings["submit"]["folder"],
-        polish.settings["upload"]["folder"]).attach(polish.flask.request.json)
+        polish.settings["upload"]["folder"]).polish(polish.flask.request.json))

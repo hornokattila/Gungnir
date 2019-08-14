@@ -14,8 +14,7 @@ class Housekeeper:
             self.validate(json)
             for file in os.scandir(self.upload_folder):
                 if file.stat().st_size.__gt__(json["max_size"]):
-                    # TODO: Sample implementation.
-                    pass
+                    self.executor.submit(os.remove, os.path.abspath(os.path.join(self.upload_folder, file.name)))
         except OSError:
             pass
         return ""

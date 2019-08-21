@@ -1,3 +1,5 @@
+import os
+
 from utils.Blueprint import Blueprint
 
 
@@ -16,4 +18,4 @@ def _health() -> str:
 
 @health.route("/inform")
 def _inform() -> str:
-    return ""
+    return health.flask.json.dumps(dict(zip(("sysname", "nodename", "release", "version", "machine"), os.uname())))

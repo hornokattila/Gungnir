@@ -9,11 +9,11 @@ class Health(Blueprint):
 health: Health = Health("health", __name__)
 
 
-@health.route("/inform")
-def _inform() -> str:
+@health.route("/health")
+def _health() -> str:
     return ""
 
 
-@health.route("/health")
-def _health() -> str:
+@health.route("/inform")
+def _inform() -> str:
     return ""

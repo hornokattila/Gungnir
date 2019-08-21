@@ -1,16 +1,11 @@
+import os
 import typing
 
-settings: typing.Dict[str, typing.Union[typing.Dict[str, typing.Dict[str, str]], typing.Dict[str, typing.Union[bool, int, str]]]] = {
+settings: typing.Dict[str, typing.Dict[str, typing.Union[bool, int, str]]] = {
     "urls": {
-        "logger": {
-            "folder": "out/logger"
-        },
-        "submit": {
-            "folder": "out/submit"
-        },
-        "upload": {
-            "folder": "out/upload"
-        }
+        "logger_folder": os.path.abspath("out/logger"),
+        "submit_folder": os.path.abspath("out/submit"),
+        "upload_folder": os.path.abspath("out/upload")
     },
     "wsdl": {
         "debug": True,

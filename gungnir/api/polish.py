@@ -13,5 +13,5 @@ polish: Polish = Polish("polish", __name__)
 def _polish() -> str:
     return polish.flask.json.dumps(Housekeeper(
         polish.executor,
-        polish.settings["submit"]["folder"],
-        polish.settings["upload"]["folder"]).polish(polish.flask.request.json))
+        polish.settings["submit_folder"],
+        polish.settings["submit_folder"]).polish(polish.flask.request.json))

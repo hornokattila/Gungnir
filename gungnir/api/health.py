@@ -16,6 +16,6 @@ def _health() -> str:
     return ""
 
 
-@health.route("/inform")
+@health.route("/system")
 def _inform() -> str:
     return health.flask.json.dumps(dict(zip(("sysname", "nodename", "release", "version", "machine"), os.uname())))

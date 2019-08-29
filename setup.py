@@ -2,4 +2,5 @@ import setuptools
 
 import settings
 
-setuptools.setup(**settings.settings["pypi"])
+if __name__ == "__main__":
+    setuptools.setup(**settings.settings["pypi"])

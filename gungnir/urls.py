@@ -7,7 +7,7 @@ from api.submit import submit
 from api.upload import upload
 from utils.Blueprint import Blueprint
 
-version: str = "/api"
+url_prefix: str = "/api"
 urls: typing.List[Blueprint] = [
     health,
     logger,

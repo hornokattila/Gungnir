@@ -1,2 +1,5 @@
+from api import health
+
+
 def test_health():
-    pass
+    assert health._health().__eq__("")

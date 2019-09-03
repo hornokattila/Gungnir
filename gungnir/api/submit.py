@@ -1,11 +1,12 @@
 import os
 
 from services.Executor import Executor
-from utils.Whiteprint import Whiteprint
+from utils.Blueprint import Blueprint
 
 
-class Submit(Whiteprint):
-    pass
+class Submit(Blueprint):
+    def init(self) -> None:
+        pass
 
 
 submit: Submit = Submit("submit", __name__)

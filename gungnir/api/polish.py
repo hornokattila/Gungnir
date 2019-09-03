@@ -1,9 +1,10 @@
 from services.Housekeeper import Housekeeper
-from utils.Whiteprint import Whiteprint
+from utils.Blueprint import Blueprint
 
 
-class Polish(Whiteprint):
-    pass
+class Polish(Blueprint):
+    def init(self) -> None:
+        pass
 
 
 polish: Polish = Polish("polish", __name__)

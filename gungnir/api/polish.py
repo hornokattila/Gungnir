@@ -1,13 +1,14 @@
 from services.Housekeeper import Housekeeper
 from utils.Blueprint import Blueprint
+from utils.ThreadPool import ThreadPool
 
 
-class Polish(Blueprint):
+class Polish(Blueprint, ThreadPool):
     def init(self) -> None:
         pass
 
 
-polish: Polish = Polish("polish", __name__)
+polish: Polish = Polish()
 
 
 @polish.route("/polish", methods=["POST"])

@@ -2,14 +2,15 @@ import os
 
 from services.Executor import Executor
 from utils.Blueprint import Blueprint
+from utils.ThreadPool import ThreadPool
 
 
-class Submit(Blueprint):
+class Submit(Blueprint, ThreadPool):
     def init(self) -> None:
         pass
 
 
-submit: Submit = Submit("submit", __name__)
+submit: Submit = Submit()
 
 
 @submit.route("/status")

@@ -19,9 +19,9 @@ class Blueprint(abc.ABC, flask.Blueprint):
         self.werkzeug: werkzeug = werkzeug
         self.init()
 
-    @abc.abstractmethod
-    def init(self) -> None:
+    def check_password(self) -> None:
         pass
 
-    def check_password(self) -> None:
+    @abc.abstractmethod
+    def init(self) -> None:
         pass

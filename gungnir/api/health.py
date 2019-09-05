@@ -1,6 +1,7 @@
 import os
 
 from utils.Blueprint import Blueprint
+from utils.LoginManager import LoginManager
 
 
 class Health(Blueprint):
@@ -8,7 +9,7 @@ class Health(Blueprint):
         pass
 
 
-health: Health = Health()
+health: Health = Health(LoginManager.header_loader)
 
 
 @health.route("/health")

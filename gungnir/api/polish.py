@@ -1,5 +1,6 @@
 from services.Housekeeper import Housekeeper
 from utils.Blueprint import Blueprint
+from utils.LoginManager import LoginManager
 from utils.ThreadPool import ThreadPool
 
 
@@ -8,7 +9,7 @@ class Polish(Blueprint, ThreadPool):
         pass
 
 
-polish: Polish = Polish()
+polish: Polish = Polish(LoginManager.header_loader)
 
 
 @polish.route("/polish", methods=["POST"])

@@ -2,6 +2,7 @@ import os
 
 from services.Executor import Executor
 from utils.Blueprint import Blueprint
+from utils.LoginManager import LoginManager
 from utils.ThreadPool import ThreadPool
 
 
@@ -10,7 +11,7 @@ class Submit(Blueprint, ThreadPool):
         pass
 
 
-submit: Submit = Submit()
+submit: Submit = Submit(LoginManager.header_loader)
 
 
 @submit.route("/status")

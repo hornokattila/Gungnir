@@ -1,6 +1,7 @@
 import os
 
 from utils.Blueprint import Blueprint
+from utils.LoginManager import LoginManager
 
 
 class Logger(Blueprint):
@@ -9,7 +10,7 @@ class Logger(Blueprint):
             os.makedirs(self.settings["logger_folder"])
 
 
-logger: Logger = Logger()
+logger: Logger = Logger(LoginManager.header_loader)
 
 
 @logger.route("/logger/<path:file>")

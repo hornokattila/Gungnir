@@ -2,6 +2,7 @@ import os
 import typing
 
 from utils.Blueprint import Blueprint
+from utils.LoginManager import LoginManager
 
 
 class Upload(Blueprint):
@@ -10,7 +11,7 @@ class Upload(Blueprint):
             os.makedirs(self.settings["upload_folder"])
 
 
-upload: Upload = Upload()
+upload: Upload = Upload(LoginManager.header_loader)
 
 
 @upload.route("/upload", methods=["POST"])

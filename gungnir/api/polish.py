@@ -8,7 +8,7 @@ class Polish(Blueprint):
         pass
 
 
-polish: Polish = Polish(LoginManager.header_loader)
+polish: Polish = Polish(LoginManager().header_loader)
 
 
 @polish.route("/polish", methods=["POST"])

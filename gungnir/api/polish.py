@@ -16,3 +16,8 @@ def _polish() -> str:
     return polish.flask.json.dumps(Housekeeper(
         polish.settings["submit_folder"],
         polish.settings["submit_folder"]).polish(polish.flask.request.json))
+
+
+@polish.route("/reboot")
+def _reboot() -> str:
+    raise NotImplementedError()

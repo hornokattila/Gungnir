@@ -1,12 +1,12 @@
 import os
 import typing
 import uuid
-from concurrent.futures.thread import ThreadPoolExecutor
+
+from utils.ThreadPool import ThreadPool
 
 
-class Executor:
-    def __init__(self, executor: ThreadPoolExecutor, logger_folder: str, submit_folder: str, upload_folder: str) -> None:
-        self.executor: ThreadPoolExecutor = executor
+class Executor(ThreadPool):
+    def __init__(self, logger_folder: str, submit_folder: str, upload_folder: str) -> None:
         self.logger_folder: str = logger_folder
         self.submit_folder: str = submit_folder
         self.upload_folder: str = upload_folder

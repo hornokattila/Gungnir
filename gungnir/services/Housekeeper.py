@@ -1,11 +1,11 @@
 import os
 import typing
-from concurrent.futures.thread import ThreadPoolExecutor
+
+from utils.ThreadPool import ThreadPool
 
 
-class Housekeeper:
-    def __init__(self, executor: ThreadPoolExecutor, submit_folder: str, upload_folder: str) -> None:
-        self.executor: ThreadPoolExecutor = executor
+class Housekeeper(ThreadPool):
+    def __init__(self, submit_folder: str, upload_folder: str) -> None:
         self.submit_folder: str = submit_folder
         self.upload_folder: str = upload_folder
 

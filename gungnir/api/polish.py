@@ -18,6 +18,6 @@ def _polish() -> str:
         polish.settings["submit_folder"]).polish(polish.flask.request.json))
 
 
-@polish.route("/reboot")
+@polish.route("/reboot", methods=["POST"])
 def _reboot() -> str:
     raise NotImplementedError()

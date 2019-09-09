@@ -9,7 +9,7 @@ class Housekeeper(ThreadPool):
         self.submit_folder: str = submit_folder
         self.upload_folder: str = upload_folder
 
-    def polish(self, json: typing.Dict[str, str]) -> typing.List[str]:
+    def remove(self, json: typing.Dict[str, str]) -> typing.List[str]:
         uploads: typing.List[str] = []
         try:
             self.validate(json)

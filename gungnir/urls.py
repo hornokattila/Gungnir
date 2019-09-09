@@ -2,7 +2,7 @@ import typing
 
 from api.health import health
 from api.logger import logger
-from api.polish import polish
+from api.reboot import reboot
 from api.submit import submit
 from api.upload import upload
 from utils.Blueprint import Blueprint
@@ -11,7 +11,7 @@ url_prefix: str = "/api"
 urls: typing.List[Blueprint] = [
     health,
     logger,
-    polish,
+    reboot,
     submit,
     upload
 ]

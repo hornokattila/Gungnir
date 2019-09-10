@@ -2,6 +2,7 @@ import base64
 import typing
 
 
+# TODO: Work in progress!
 class LoginManager:
     def ba_spwd(self, headers: typing.Dict[str, str]) -> None:
         try:

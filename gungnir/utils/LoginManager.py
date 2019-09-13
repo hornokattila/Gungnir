@@ -6,6 +6,6 @@ import typing
 class LoginManager:
     def ba_spwd(self, headers: typing.Dict[str, str]) -> None:
         try:
-            credentials: typing.List[str] = list(map(lambda code: base64.b64decode(code), headers.get("Authorization").replace("Basic ", "", 1).split(":")))
+            credentials: typing.List[str] = base64.b64decode(headers.get("Authorization").replace("Basic ", "", 1)).decode().split(":")
         except TypeError:
             pass

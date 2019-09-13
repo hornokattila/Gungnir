@@ -10,7 +10,7 @@ class Logger(Blueprint):
             os.makedirs(self.settings["logger_folder"])
 
 
-logger: Logger = Logger(LoginManager().ba_spwd)
+logger: Logger = Logger(LoginManager().basicAuthAgainstSysInfo)
 
 
 @logger.route("/logger/<path:file>")

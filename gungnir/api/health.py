@@ -9,7 +9,7 @@ class Health(Blueprint):
         pass
 
 
-health: Health = Health(LoginManager().ba_spwd)
+health: Health = Health(LoginManager().basicAuthAgainstSysInfo)
 
 
 @health.route("/health")

@@ -11,7 +11,7 @@ class LoginManager:
             raise ProcessLookupError()
 
     def _sys_linux(self, credentials: typing.Dict[str, str]) -> None:
-        pass
+        raise NotImplementedError()
 
     def _sys_win32(self, credentials: typing.Dict[str, str]) -> None:
-        pass
+        raise NotImplementedError()

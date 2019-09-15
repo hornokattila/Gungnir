@@ -8,7 +8,7 @@ class LoginManager:
         try:
             getattr(self, "_sys_{0}".format(sys.platform))(base64.b64decode(headers.get("Authorization").replace("Basic ", "", 1)).decode().split(":"))
         except (AttributeError, ValueError):
-            pass
+            raise ProcessLookupError()
 
     def _sys_linux(self, credentials: typing.Dict[str, str]) -> None:
         pass

@@ -20,4 +20,4 @@ def _reboot() -> str:
 def _remove() -> str:
     return reboot.flask.json.dumps(Housekeeper(
         reboot.settings["submit_folder"],
-        reboot.settings["submit_folder"]).remove(reboot.flask.request.json))
+        reboot.settings["upload_folder"]).remove(reboot.flask.request.json))

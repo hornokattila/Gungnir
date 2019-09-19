@@ -10,7 +10,7 @@ class Submit(Blueprint):
         pass
 
 
-submit: Submit = Submit(LoginManager().basicAuthAgainstSysInfo)
+submit: Submit = Submit(LoginManager().user_loader)
 
 
 @submit.route("/status")

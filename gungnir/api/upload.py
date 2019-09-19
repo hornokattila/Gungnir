@@ -11,7 +11,7 @@ class Upload(Blueprint):
             os.makedirs(self.settings["upload_folder"])
 
 
-upload: Upload = Upload(LoginManager().basicAuthAgainstSysInfo)
+upload: Upload = Upload(LoginManager().user_loader)
 
 
 @upload.route("/upload", methods=["POST"])

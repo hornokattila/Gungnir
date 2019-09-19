@@ -8,7 +8,7 @@ class Reboot(Blueprint):
         pass
 
 
-reboot: Reboot = Reboot(LoginManager().basicAuthAgainstSysInfo)
+reboot: Reboot = Reboot(LoginManager().user_loader)
 
 
 @reboot.route("/reboot", methods=["POST"])

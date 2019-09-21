@@ -6,7 +6,7 @@ from utils.ThreadPool import ThreadPool
 
 class Housekeeper(ThreadPool):
     def __init__(self, submit_folder: str, upload_folder: str) -> None:
-        self.submit_folder: str = submit_folder
+        super().__init__(submit_folder)
         self.upload_folder: str = upload_folder
 
     def remove(self, json: typing.Dict[str, str]) -> typing.List[str]:

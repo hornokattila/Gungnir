@@ -7,8 +7,8 @@ from utils.ThreadPool import ThreadPool
 
 class Executor(ThreadPool):
     def __init__(self, logger_folder: str, submit_folder: str, upload_folder: str) -> None:
+        super().__init__(submit_folder)
         self.logger_folder: str = logger_folder
-        self.submit_folder: str = submit_folder
         self.upload_folder: str = upload_folder
 
     def submit(self, json: typing.Dict[str, str]) -> str:

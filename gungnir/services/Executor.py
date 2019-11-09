@@ -11,7 +11,7 @@ class Executor(ThreadPool):
         self.logger_folder: str = logger_folder
         self.upload_folder: str = upload_folder
 
-    def submit(self, json: typing.Dict[str, str]) -> str:
+    def submit(self, json: typing.Dict[str, str]) -> typing.List[str]:
         try:
             self.validate(json)
             os.makedirs(self.submit_folder)
@@ -22,10 +22,10 @@ class Executor(ThreadPool):
             self.executor.submit(os.system, "{0} {1} > {2}".format(path, self.upload_folder, os.path.join(self.logger_folder, "{0}.log".format(name))))
             self.executor.submit(os.remove, path)
             self.executor.submit(os.removedirs, self.submit_folder)
-            return name
+            return [name]
         except OSError:
             pass
-        return ""
+        return []
 
     def validate(self, json: typing.Dict[str, str]) -> None:
         if "script" not in json:

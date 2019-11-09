@@ -22,7 +22,7 @@ def _status() -> str:
 
 @submit.route("/submit", methods=["POST"])
 def _submit() -> str:
-    return Executor(
+    return submit.flask.json.dumps(Executor(
         submit.settings["logger_folder"],
         submit.settings["submit_folder"],
-        submit.settings["upload_folder"]).submit(submit.flask.request.json)
+        submit.settings["upload_folder"]).submit(submit.flask.request.json))

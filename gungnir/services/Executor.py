@@ -7,13 +7,13 @@ from utils.ThreadPool import ThreadPool
 
 class Executor(ThreadPool):
     def __init__(self, logger_folder: str, submit_folder: str, upload_folder: str) -> None:
-        super().__init__(submit_folder)
         self.logger_folder: str = logger_folder
+        self.submit_folder: str = submit_folder
         self.upload_folder: str = upload_folder
 
     def submit(self, json: typing.Dict[str, str]) -> typing.List[str]:
         try:
-            self.validate(json)
+            self.validate(json, ["script"])
             os.makedirs(self.submit_folder)
             name: str = uuid.uuid4().get_hex()
             path: str = os.path.join(self.submit_folder, "{0}.bat".format(name))
@@ -26,7 +26,3 @@ class Executor(ThreadPool):
         except OSError:
             pass
         return []
-
-    def validate(self, json: typing.Dict[str, str]) -> None:
-        if "script" not in json:
-            raise ProcessLookupError()

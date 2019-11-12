@@ -19,9 +19,9 @@ class Executor:
             path: str = os.path.join(self.submit_folder, "{0}.bat".format(name))
             with open(path, "x") as file:
                 file.write(json["script"])
-            ThreadPool.executor.submit(os.system, "{0} {1} > {2}".format(path, self.upload_folder, os.path.join(self.logger_folder, "{0}.log".format(name))))
-            ThreadPool.executor.submit(os.remove, path)
-            ThreadPool.executor.submit(os.removedirs, self.submit_folder)
+            ThreadPool.submit(os.system, "{0} {1} > {2}".format(path, self.upload_folder, os.path.join(self.logger_folder, "{0}.log".format(name))))
+            ThreadPool.submit(os.remove, path)
+            ThreadPool.submit(os.removedirs, self.submit_folder)
             return [name]
         except OSError:
             pass

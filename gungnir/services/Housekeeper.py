@@ -16,7 +16,7 @@ class Housekeeper:
             for file in os.scandir(self.upload_folder):
                 if file.stat().st_size.__gt__(json["max_size"]):
                     name: str = file.name
-                    ThreadPool.executor.submit(os.remove, os.path.join(self.upload_folder, name))
+                    ThreadPool.submit(os.remove, os.path.join(self.upload_folder, name))
                     uploads.append(name)
         except OSError:
             pass

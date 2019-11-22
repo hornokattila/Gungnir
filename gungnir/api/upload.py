@@ -7,8 +7,7 @@ from utils.LoginManager import LoginManager
 
 class Upload(Blueprint):
     def init(self) -> None:
-        if not os.path.isdir(self.settings["upload_folder"]):
-            os.makedirs(self.settings["upload_folder"])
+        os.makedirs(self.settings["upload_folder"], exist_ok=True)
 
 
 upload: Upload = Upload(LoginManager().user_loader)

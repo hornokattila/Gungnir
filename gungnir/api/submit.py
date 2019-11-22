@@ -7,7 +7,7 @@ from utils.LoginManager import LoginManager
 
 class Submit(Blueprint):
     def init(self) -> None:
-        pass
+        os.makedirs(self.settings["submit_folder"], exist_ok=True)
 
 
 submit: Submit = Submit(LoginManager().user_loader)

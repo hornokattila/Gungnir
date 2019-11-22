@@ -6,8 +6,7 @@ from utils.LoginManager import LoginManager
 
 class Logger(Blueprint):
     def init(self) -> None:
-        if not os.path.isdir(self.settings["logger_folder"]):
-            os.makedirs(self.settings["logger_folder"])
+        os.makedirs(self.settings["logger_folder"], exist_ok=True)
 
 
 logger: Logger = Logger(LoginManager().user_loader)

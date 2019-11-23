@@ -9,8 +9,8 @@ class Flask(flask.Flask):
     def run(self, **options: typing.Union[str, typing.Dict[str, typing.Union[bool, int, str]], typing.List[Blueprint]]) -> None:
         url_config: typing.Dict[str, typing.Union[bool, int, str]] = options.pop("url_config")
         url_prefix: str = options.pop("url_prefix")
-        for prop in options.pop("urls"):
-            prop.settings = url_config
-            prop.init()
-            super().register_blueprint(prop, url_prefix=url_prefix)
+        for url in options.pop("urls"):
+            url.settings = url_config
+            url.init()
+            super().register_blueprint(url, url_prefix=url_prefix)
         super().run(**options)

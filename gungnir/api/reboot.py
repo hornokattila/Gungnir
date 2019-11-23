@@ -1,6 +1,9 @@
-from services.Housekeeper import Housekeeper
+import os
+import typing
+
 from utils.Blueprint import Blueprint
 from utils.LoginManager import LoginManager
+from utils.ThreadPool import ThreadPool
 
 
 class Reboot(Blueprint):
@@ -18,6 +21,14 @@ def _reboot() -> str:
 
 @reboot.route("/remove", methods=["POST"])
 def _remove() -> str:
-    return reboot.flask.json.dumps(Housekeeper(
-        reboot.settings["submit_folder"],
-        reboot.settings["upload_folder"]).submit(reboot.flask.request.json))
+    uploads: typing.List[str] = []
+    try:
+        ThreadPool.validate(reboot.flask.request.json, ["max_size"])
+        for file in os.scandir(reboot.settings["upload_folder"]):
+            if file.stat().st_size.__gt__(reboot.flask.request.json["max_size"]):
+                name: str = file.name
+                ThreadPool.submit(os.remove, os.path.join(reboot.settings["upload_folder"], name))
+                uploads.append(name)
+    except OSError:
+        pass
+    return reboot.flask.json.dumps(uploads)

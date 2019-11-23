@@ -16,9 +16,7 @@ submit: Submit = Submit(LoginManager().user_loader)
 
 @submit.route("/status")
 def _status() -> str:
-    if os.path.isdir(submit.settings["submit_folder"]):
-        return submit.flask.json.dumps(os.listdir(submit.settings["submit_folder"]))
-    return ""
+    return submit.flask.json.dumps(os.listdir(submit.settings["submit_folder"]))
 
 
 @submit.route("/submit", methods=["POST"])

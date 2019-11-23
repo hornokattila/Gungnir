@@ -4,8 +4,6 @@ import typing
 import flask
 import werkzeug
 
-import settings
-
 
 class Blueprint(abc.ABC, flask.Blueprint):
     def __init__(self, header_loader: typing.Callable[[typing.Dict[str, str]], None]) -> None:
@@ -13,9 +11,8 @@ class Blueprint(abc.ABC, flask.Blueprint):
         self.before_request(self.request_loader)
         self.flask: flask = flask
         self.header_loader: typing.Callable[[typing.Dict[str, str]], None] = header_loader
-        self.settings: typing.Dict[str, typing.Union[bool, int, str]] = settings.settings["urls"]
+        self.settings: typing.Dict[str, typing.Union[bool, int, str]] = {}
         self.werkzeug: werkzeug = werkzeug
-        self.init()
 
     @abc.abstractmethod
     def init(self) -> None:

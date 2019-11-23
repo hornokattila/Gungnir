@@ -11,6 +11,5 @@ class ThreadPool:
 
     @staticmethod
     def validate(json: typing.Dict[str, str], keys: typing.List[str]) -> None:
-        for key in keys:
-            if key not in json:
-                raise ProcessLookupError()
+        if set(json.keys()) != set(keys):
+            raise ProcessLookupError()

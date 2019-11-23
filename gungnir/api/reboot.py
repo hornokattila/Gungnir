@@ -22,13 +22,10 @@ def _reboot() -> str:
 @reboot.route("/remove", methods=["POST"])
 def _remove() -> str:
     uploads: typing.List[str] = []
-    try:
-        ThreadPool.validate(reboot.flask.request.json, ["max_size"])
-        for file in os.scandir(reboot.settings["upload_folder"]):
-            if file.stat().st_size.__gt__(reboot.flask.request.json["max_size"]):
-                name: str = file.name
-                ThreadPool.submit(os.remove, os.path.join(reboot.settings["upload_folder"], name))
-                uploads.append(name)
-    except OSError:
-        pass
+    ThreadPool.validate(reboot.flask.request.json, ["max_size"])
+    for file in os.scandir(reboot.settings["upload_folder"]):
+        if file.stat().st_size.__gt__(reboot.flask.request.json["max_size"]):
+            name: str = file.name
+            ThreadPool.submit(os.remove, os.path.join(reboot.settings["upload_folder"], name))
+            uploads.append(name)
     return reboot.flask.json.dumps(uploads)

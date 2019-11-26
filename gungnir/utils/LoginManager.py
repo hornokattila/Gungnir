@@ -10,6 +10,9 @@ class LoginManager:
         except (AttributeError, TypeError, ValueError):
             raise PermissionError()
 
+    def void_loader(self, headers: typing.Dict[str, str]) -> None:
+        pass
+
     def _sys_linux(self, username: str, password: str) -> None:
         raise NotImplementedError()
 

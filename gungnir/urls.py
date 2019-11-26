@@ -6,6 +6,7 @@ from api.reboot import reboot
 from api.submit import submit
 from api.update import update
 from api.upload import upload
+from gui.vision import vision
 from utils.Blueprint import Blueprint
 
 url_prefix: str = "/api"
@@ -15,5 +16,6 @@ urls: typing.List[Blueprint] = [
     reboot,
     submit,
     update,
-    upload
+    upload,
+    vision
 ]

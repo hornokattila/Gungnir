@@ -12,4 +12,4 @@ vision: Vision = Vision(LoginManager().void_loader)
 
 @vision.route("/")
 def _vision() -> str:
-    raise NotImplementedError()
+    return vision.flask.render_template("vision.html")

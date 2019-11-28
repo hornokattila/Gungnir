@@ -10,6 +10,6 @@ class Vision(Blueprint):
 vision: Vision = Vision(LoginManager().void_loader)
 
 
-@vision.route("/vision")
+@vision.route("/")
 def _vision() -> str:
     raise NotImplementedError()

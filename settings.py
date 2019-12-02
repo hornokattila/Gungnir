@@ -11,8 +11,10 @@ settings: typing.Dict[str, typing.Dict[str, typing.Union[bool, int, str]]] = {
         "upload_folder": os.path.abspath("out/upload")
     },
     "wsdl": {
-        "debug": True,
+        "debug": False,
         "host": "0.0.0.0",
-        "port": 5000
+        "port": 443,
+        "ssl_context": "adhoc",
+        "threaded": True
     }
 }

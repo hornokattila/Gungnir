@@ -1,9 +1,9 @@
 import os
 import typing
 
-from utils.Blueprint import Blueprint
-from utils.LoginManager import LoginManager
-from utils.ThreadPool import ThreadPool
+from gungnir.utils.Blueprint import Blueprint
+from gungnir.utils.LoginManager import LoginManager
+from gungnir.utils.ThreadPool import ThreadPool
 
 
 class Reboot(Blueprint):

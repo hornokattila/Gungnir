@@ -1,7 +1,7 @@
 import os
 
-from utils.Blueprint import Blueprint
-from utils.LoginManager import LoginManager
+from gungnir.utils.Blueprint import Blueprint
+from gungnir.utils.LoginManager import LoginManager
 
 
 class Logger(Blueprint):

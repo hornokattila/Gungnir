@@ -1,13 +1,13 @@
 import typing
 
-from api.health import health
-from api.logger import logger
-from api.reboot import reboot
-from api.submit import submit
-from api.update import update
-from api.upload import upload
-from gui.visual import visual
-from utils.Blueprint import Blueprint
+from gungnir.api.health import health
+from gungnir.api.logger import logger
+from gungnir.api.reboot import reboot
+from gungnir.api.submit import submit
+from gungnir.api.update import update
+from gungnir.api.upload import upload
+from gungnir.gui.visual import visual
+from gungnir.utils.Blueprint import Blueprint
 
 url_prefix: str = "/api"
 urls: typing.List[Blueprint] = [

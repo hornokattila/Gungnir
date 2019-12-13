@@ -9,9 +9,10 @@ class Blueprint(abc.ABC, flask.Blueprint):
     def __init__(self, header_loader: typing.Callable[[typing.Dict[str, str]], None]) -> None:
         super().__init__(self.__class__.__name__, self.__class__.__module__)
         self.before_request(self.request_loader)
+        self.config: typing.Dict[str, typing.Union[bool, int, str]] = {}
         self.flask: flask = flask
         self.header_loader: typing.Callable[[typing.Dict[str, str]], None] = header_loader
-        self.settings: typing.Dict[str, typing.Union[bool, int, str]] = {}
+        self.system: typing.Dict[str, typing.Union[bool, int, str]] = {}
         self.werkzeug: werkzeug = werkzeug
 
     @abc.abstractmethod

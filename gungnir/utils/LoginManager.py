@@ -14,7 +14,8 @@ class LoginManager:
         pass
 
     def _sys_linux(self, username: str, password: str) -> None:
-        raise NotImplementedError()
+        # TODO: Missing implementation!
+        pass
 
     def _sys_win32(self, username: str, password: str) -> None:
         raise NotImplementedError()

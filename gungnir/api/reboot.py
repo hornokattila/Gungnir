@@ -11,7 +11,7 @@ class Reboot(Blueprint):
         pass
 
 
-reboot: Reboot = Reboot(LoginManager().user_loader)
+reboot: Reboot = Reboot(LoginManager().system_loader)
 
 
 @reboot.route("/reboot", methods=["POST"])

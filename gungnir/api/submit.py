@@ -11,7 +11,7 @@ class Submit(Blueprint):
         os.makedirs(self.config["submit_folder"], exist_ok=True)
 
 
-submit: Submit = Submit(LoginManager().user_loader)
+submit: Submit = Submit(LoginManager().system_loader)
 
 
 @submit.route("/status")

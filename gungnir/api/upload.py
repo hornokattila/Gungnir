@@ -10,7 +10,7 @@ class Upload(Blueprint):
         os.makedirs(self.config["upload_folder"], exist_ok=True)
 
 
-upload: Upload = Upload(LoginManager().user_loader)
+upload: Upload = Upload(LoginManager().system_loader)
 
 
 @upload.route("/upload", methods=["POST"])

@@ -7,7 +7,7 @@ class Update(Blueprint):
         pass
 
 
-update: Update = Update(LoginManager().user_loader)
+update: Update = Update(LoginManager().system_loader)
 
 
 @update.route("/update", methods=["POST"])

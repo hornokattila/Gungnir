@@ -7,7 +7,7 @@ class Visual(Blueprint):
         pass
 
 
-visual: Visual = Visual(LoginManager().void_loader)
+visual: Visual = Visual(LoginManager().vacant_loader)
 
 
 @visual.route("/")

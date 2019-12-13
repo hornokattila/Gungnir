@@ -4,13 +4,13 @@ import typing
 
 
 class LoginManager:
-    def user_loader(self, headers: typing.Dict[str, str]) -> None:
+    def system_loader(self, headers: typing.Dict[str, str]) -> None:
         try:
             getattr(self, "_sys_{0}".format(sys.platform))(*base64.b64decode(headers.get("Authorization").replace("Basic ", "", 1)).decode().split(":"))
         except (AttributeError, TypeError, ValueError):
             raise PermissionError()
 
-    def void_loader(self, headers: typing.Dict[str, str]) -> None:
+    def vacant_loader(self, headers: typing.Dict[str, str]) -> None:
         pass
 
     def _sys_linux(self, username: str, password: str) -> None:

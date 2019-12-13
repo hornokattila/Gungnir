@@ -9,7 +9,7 @@ class Logger(Blueprint):
         os.makedirs(self.config["logger_folder"], exist_ok=True)
 
 
-logger: Logger = Logger(LoginManager().user_loader)
+logger: Logger = Logger(LoginManager().system_loader)
 
 
 @logger.route("/logger/<path:file>")

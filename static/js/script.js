@@ -1,4 +1,4 @@
 class LoginManager {
-    system_loader() {
+    static system_loader() {
     }
 }

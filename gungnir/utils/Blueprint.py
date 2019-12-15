@@ -17,11 +17,11 @@ class Blueprint(abc.ABC, flask.Blueprint):
         self.werkzeug: werkzeug = werkzeug
 
     @abc.abstractmethod
-    def init(self) -> None:
+    def enable(self) -> None:
         pass
 
     @abc.abstractmethod
-    def spec(self) -> typing.Dict[str, typing.Dict[str, typing.Union[str, typing.List[str]]]]:
+    def detail(self) -> typing.Dict[str, typing.Dict[str, typing.Union[str, typing.List[str]]]]:
         pass
 
     def _request_loader(self) -> None:

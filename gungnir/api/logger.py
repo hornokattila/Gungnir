@@ -6,10 +6,10 @@ from gungnir.utils.LoginManager import LoginManager
 
 
 class Logger(Blueprint):
-    def init(self) -> None:
+    def enable(self) -> None:
         os.makedirs(self.config["logger_folder"], exist_ok=True)
 
-    def spec(self) -> typing.Dict[str, typing.Dict[str, typing.Union[str, typing.List[str]]]]:
+    def detail(self) -> typing.Dict[str, typing.Dict[str, typing.Union[str, typing.List[str]]]]:
         return {
             "_logger": {"rule": "/logger/<path:file>", "methods": ["GET"]},
             "_loggers": {"rule": "/loggers", "methods": ["GET"]}
@@ -19,11 +19,11 @@ class Logger(Blueprint):
 logger: Logger = Logger(LoginManager().kernel_loader)
 
 
-@logger.route(**logger.spec()["_logger"])
-def _logger(file: str) -> str:
+@logger.route(**logger.detail()["_logger"])
+def _get_logger(file: str) -> str:
     return logger.flask.send_from_directory(logger.config["logger_folder"], file)
 
 
-@logger.route(**logger.spec()["_loggers"])
-def _loggers() -> str:
+@logger.route(**logger.detail()["_loggers"])
+def _get_loggers() -> str:
     return logger.flask.json.dumps(os.listdir(logger.config["logger_folder"]))

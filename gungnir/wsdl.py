@@ -15,6 +15,6 @@ class Flask(flask.Flask):
             rule.config = url_config
             rule.mirror = urls
             rule.system = url_system
-            rule.init()
+            rule.enable()
             super().register_blueprint(rule, url_prefix=url_prefix)
         super().run(**options)

@@ -7,10 +7,10 @@ from gungnir.utils.ThreadPool import ThreadPool
 
 
 class Reboot(Blueprint):
-    def init(self) -> None:
+    def enable(self) -> None:
         pass
 
-    def spec(self) -> typing.Dict[str, typing.Dict[str, typing.Union[str, typing.List[str]]]]:
+    def detail(self) -> typing.Dict[str, typing.Dict[str, typing.Union[str, typing.List[str]]]]:
         return {
             "_reboot": {"rule": "/reboot", "methods": ["POST"]},
             "_remove": {"rule": "/remove", "methods": ["POST"]}
@@ -20,13 +20,13 @@ class Reboot(Blueprint):
 reboot: Reboot = Reboot(LoginManager().kernel_loader)
 
 
-@reboot.route(**reboot.spec()["_reboot"])
-def _reboot() -> str:
+@reboot.route(**reboot.detail()["_reboot"])
+def _set_reboot() -> str:
     raise NotImplementedError()
 
 
-@reboot.route(**reboot.spec()["_remove"])
-def _remove() -> str:
+@reboot.route(**reboot.detail()["_remove"])
+def _set_remove() -> str:
     uploads: typing.List[str] = []
     ThreadPool.validate(reboot.flask.request.json, ["max_size"])
     for file in os.scandir(reboot.config["upload_folder"]):

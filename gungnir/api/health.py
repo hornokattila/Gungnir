@@ -6,10 +6,10 @@ from gungnir.utils.LoginManager import LoginManager
 
 
 class Health(Blueprint):
-    def init(self) -> None:
+    def enable(self) -> None:
         pass
 
-    def spec(self) -> typing.Dict[str, typing.Dict[str, typing.Union[str, typing.List[str]]]]:
+    def detail(self) -> typing.Dict[str, typing.Dict[str, typing.Union[str, typing.List[str]]]]:
         return {
             "_device": {"rule": "/device", "methods": ["GET"]},
             "_health": {"rule": "/health", "methods": ["GET"]}
@@ -19,11 +19,11 @@ class Health(Blueprint):
 health: Health = Health(LoginManager().kernel_loader)
 
 
-@health.route(**health.spec()["_device"])
-def _device() -> str:
+@health.route(**health.detail()["_device"])
+def _get_device() -> str:
     return health.flask.json.dumps(dict(zip(("sysname", "nodename", "release", "version", "machine"), os.uname())))
 
 
-@health.route(**health.spec()["_health"])
-def _health() -> str:
+@health.route(**health.detail()["_health"])
+def _get_health() -> str:
     return ""

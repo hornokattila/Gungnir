@@ -6,10 +6,10 @@ from gungnir.utils.LoginManager import LoginManager
 
 
 class Upload(Blueprint):
-    def init(self) -> None:
+    def enable(self) -> None:
         os.makedirs(self.config["upload_folder"], exist_ok=True)
 
-    def spec(self) -> typing.Dict[str, typing.Dict[str, typing.Union[str, typing.List[str]]]]:
+    def detail(self) -> typing.Dict[str, typing.Dict[str, typing.Union[str, typing.List[str]]]]:
         return {
             "_upload": {"rule": "/upload", "methods": ["POST"]},
             "_uploads": {"rule": "/uploads", "methods": ["GET"]}
@@ -19,8 +19,8 @@ class Upload(Blueprint):
 upload: Upload = Upload(LoginManager().kernel_loader)
 
 
-@upload.route(**upload.spec()["_upload"])
-def _upload() -> str:
+@upload.route(**upload.detail()["_upload"])
+def _set_upload() -> str:
     uploads: typing.List[str] = []
     for file in upload.flask.request.files:
         name: str = upload.werkzeug.utils.secure_filename(file)
@@ -31,8 +31,8 @@ def _upload() -> str:
     return upload.flask.json.dumps(uploads)
 
 
-@upload.route(**upload.spec()["_uploads"])
-def _uploads() -> str:
+@upload.route(**upload.detail()["_uploads"])
+def _get_uploads() -> str:
     uploads: typing.Dict[str, typing.Dict[str, int]] = {}
     for file in os.scandir(upload.config["upload_folder"]):
         uploads[file.name] = dict(zip(("mode", "ino", "dev", "nlink", "uid", "gid", "size", "atime", "mtime", "ctime"), file.stat()))

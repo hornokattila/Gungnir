@@ -16,7 +16,7 @@ class Logger(Blueprint):
         }
 
 
-logger: Logger = Logger(LoginManager().system_loader)
+logger: Logger = Logger(LoginManager().kernel_loader)
 
 
 @logger.route(**logger.spec()["_logger"])

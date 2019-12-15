@@ -18,7 +18,7 @@ class Submit(Blueprint):
         }
 
 
-submit: Submit = Submit(LoginManager().system_loader)
+submit: Submit = Submit(LoginManager().kernel_loader)
 
 
 @submit.route(**submit.spec()["_status"])

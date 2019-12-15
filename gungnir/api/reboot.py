@@ -17,7 +17,7 @@ class Reboot(Blueprint):
         }
 
 
-reboot: Reboot = Reboot(LoginManager().system_loader)
+reboot: Reboot = Reboot(LoginManager().kernel_loader)
 
 
 @reboot.route(**reboot.spec()["_reboot"])

@@ -1,4 +1,4 @@
 class LoginManager {
-    static system_loader() {
+    static kernel_loader() {
     }
 }

@@ -16,7 +16,7 @@ class Upload(Blueprint):
         }
 
 
-upload: Upload = Upload(LoginManager().system_loader)
+upload: Upload = Upload(LoginManager().kernel_loader)
 
 
 @upload.route(**upload.spec()["_upload"])

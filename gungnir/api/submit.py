@@ -10,6 +10,9 @@ class Submit(Blueprint):
     def init(self) -> None:
         os.makedirs(self.config["submit_folder"], exist_ok=True)
 
+    def spec(self) -> None:
+        pass
+
 
 submit: Submit = Submit(LoginManager().system_loader)
 

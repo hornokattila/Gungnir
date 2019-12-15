@@ -10,6 +10,9 @@ class Reboot(Blueprint):
     def init(self) -> None:
         pass
 
+    def spec(self) -> None:
+        pass
+
 
 reboot: Reboot = Reboot(LoginManager().system_loader)
 

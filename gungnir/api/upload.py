@@ -9,6 +9,9 @@ class Upload(Blueprint):
     def init(self) -> None:
         os.makedirs(self.config["upload_folder"], exist_ok=True)
 
+    def spec(self) -> None:
+        pass
+
 
 upload: Upload = Upload(LoginManager().system_loader)
 

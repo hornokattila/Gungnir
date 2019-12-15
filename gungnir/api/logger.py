@@ -8,6 +8,9 @@ class Logger(Blueprint):
     def init(self) -> None:
         os.makedirs(self.config["logger_folder"], exist_ok=True)
 
+    def spec(self) -> None:
+        pass
+
 
 logger: Logger = Logger(LoginManager().system_loader)
 

@@ -8,6 +8,9 @@ class Health(Blueprint):
     def init(self) -> None:
         pass
 
+    def spec(self) -> None:
+        pass
+
 
 health: Health = Health(LoginManager().system_loader)
 

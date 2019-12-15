@@ -12,11 +12,16 @@ class Blueprint(abc.ABC, flask.Blueprint):
         self.config: typing.Dict[str, typing.Union[bool, int, str]] = {}
         self.flask: flask = flask
         self.header_loader: typing.Callable[[typing.Dict[str, str]], None] = header_loader
+        self.mirror: typing.List[Blueprint] = []
         self.system: typing.Dict[str, typing.Union[bool, int, str]] = {}
         self.werkzeug: werkzeug = werkzeug
 
     @abc.abstractmethod
     def init(self) -> None:
+        pass
+
+    @abc.abstractmethod
+    def spec(self) -> None:
         pass
 
     def request_loader(self) -> None:

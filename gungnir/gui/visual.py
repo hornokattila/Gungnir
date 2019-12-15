@@ -6,6 +6,9 @@ class Visual(Blueprint):
     def init(self) -> None:
         pass
 
+    def spec(self) -> None:
+        pass
+
 
 visual: Visual = Visual(LoginManager().vacant_loader)
 

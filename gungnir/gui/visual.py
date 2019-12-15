@@ -17,4 +17,7 @@ visual: Visual = Visual(LoginManager().vacant_loader)
 
 @visual.route(**visual.spec()["_visual"])
 def _visual() -> str:
-    return visual.flask.render_template("visual.html", **visual.system)
+    spec: typing.Dict[str, typing.Dict[str, typing.Union[str, typing.List[str]]]] = {}
+    for rule in visual.mirror:
+        spec.update(rule.spec())
+    return visual.flask.render_template("visual.html", spec=spec, **visual.system)

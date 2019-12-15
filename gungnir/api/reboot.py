@@ -10,19 +10,22 @@ class Reboot(Blueprint):
     def init(self) -> None:
         pass
 
-    def spec(self) -> None:
-        pass
+    def spec(self) -> typing.Dict[str, typing.Dict[str, typing.Union[str, typing.List[str]]]]:
+        return {
+            "_reboot": {"rule": "/reboot", "methods": ["POST"]},
+            "_remove": {"rule": "/remove", "methods": ["POST"]}
+        }
 
 
 reboot: Reboot = Reboot(LoginManager().system_loader)
 
 
-@reboot.route("/reboot", methods=["POST"])
+@reboot.route(**reboot.spec()["_reboot"])
 def _reboot() -> str:
     raise NotImplementedError()
 
 
-@reboot.route("/remove", methods=["POST"])
+@reboot.route(**reboot.spec()["_remove"])
 def _remove() -> str:
     uploads: typing.List[str] = []
     ThreadPool.validate(reboot.flask.request.json, ["max_size"])

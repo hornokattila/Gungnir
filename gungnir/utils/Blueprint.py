@@ -21,7 +21,7 @@ class Blueprint(abc.ABC, flask.Blueprint):
         pass
 
     @abc.abstractmethod
-    def spec(self) -> None:
+    def spec(self) -> typing.Dict[str, typing.Dict[str, typing.Union[str, typing.List[str]]]]:
         pass
 
     def request_loader(self) -> None:

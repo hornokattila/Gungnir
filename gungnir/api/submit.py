@@ -1,4 +1,5 @@
 import os
+import typing
 import uuid
 
 from gungnir.utils.Blueprint import Blueprint
@@ -10,19 +11,22 @@ class Submit(Blueprint):
     def init(self) -> None:
         os.makedirs(self.config["submit_folder"], exist_ok=True)
 
-    def spec(self) -> None:
-        pass
+    def spec(self) -> typing.Dict[str, typing.Dict[str, typing.Union[str, typing.List[str]]]]:
+        return {
+            "_status": {"rule": "/status", "methods": ["GET"]},
+            "_submit": {"rule": "/submit", "methods": ["POST"]}
+        }
 
 
 submit: Submit = Submit(LoginManager().system_loader)
 
 
-@submit.route("/status")
+@submit.route(**submit.spec()["_status"])
 def _status() -> str:
     return submit.flask.json.dumps(os.listdir(submit.config["submit_folder"]))
 
 
-@submit.route("/submit", methods=["POST"])
+@submit.route(**submit.spec()["_submit"])
 def _submit() -> str:
     ThreadPool.validate(submit.flask.request.json, ["script"])
     name: str = uuid.uuid4().get_hex()

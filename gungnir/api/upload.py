@@ -9,14 +9,17 @@ class Upload(Blueprint):
     def init(self) -> None:
         os.makedirs(self.config["upload_folder"], exist_ok=True)
 
-    def spec(self) -> None:
-        pass
+    def spec(self) -> typing.Dict[str, typing.Dict[str, typing.Union[str, typing.List[str]]]]:
+        return {
+            "_upload": {"rule": "/upload", "methods": ["POST"]},
+            "_uploads": {"rule": "/uploads", "methods": ["GET"]}
+        }
 
 
 upload: Upload = Upload(LoginManager().system_loader)
 
 
-@upload.route("/upload", methods=["POST"])
+@upload.route(**upload.spec()["_upload"])
 def _upload() -> str:
     uploads: typing.List[str] = []
     for file in upload.flask.request.files:
@@ -28,7 +31,7 @@ def _upload() -> str:
     return upload.flask.json.dumps(uploads)
 
 
-@upload.route("/uploads")
+@upload.route(**upload.spec()["_uploads"])
 def _uploads() -> str:
     uploads: typing.Dict[str, typing.Dict[str, int]] = {}
     for file in os.scandir(upload.config["upload_folder"]):

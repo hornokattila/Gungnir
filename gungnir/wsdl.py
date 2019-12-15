@@ -11,10 +11,10 @@ class Flask(flask.Flask):
         url_prefix: str = options.pop("url_prefix")
         url_system: typing.Dict[str, typing.Union[bool, int, str]] = options.pop("url_system")
         urls: typing.List[Blueprint] = options.pop("urls")
-        for url in urls:
-            url.config = url_config
-            url.mirror = urls
-            url.system = url_system
-            url.init()
-            super().register_blueprint(url, url_prefix=url_prefix)
+        for rule in urls:
+            rule.config = url_config
+            rule.mirror = urls
+            rule.system = url_system
+            rule.init()
+            super().register_blueprint(rule, url_prefix=url_prefix)
         super().run(**options)

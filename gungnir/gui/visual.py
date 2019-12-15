@@ -9,9 +9,7 @@ class Visual(Blueprint):
         pass
 
     def spec(self) -> typing.Dict[str, typing.Dict[str, typing.Union[str, typing.List[str]]]]:
-        return {
-            "_visual": {"rule": "/", "methods": ["GET"]}
-        }
+        return {"_visual": {"rule": "/", "methods": ["GET"]}}
 
 
 visual: Visual = Visual(LoginManager().vacant_loader)

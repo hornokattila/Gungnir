@@ -3,6 +3,7 @@ import typing
 
 from gungnir.utils.Blueprint import Blueprint
 from gungnir.utils.LoginManager import LoginManager
+from gungnir.utils.ThreadPool import ThreadPool
 
 
 class Logger(Blueprint):
@@ -11,7 +12,7 @@ class Logger(Blueprint):
 
     def detail(self) -> typing.Dict[str, typing.Dict[str, typing.Union[str, typing.List[str]]]]:
         return {
-            "_logger": {"rule": "/logger/<path:file>", "methods": ["GET"]},
+            "_logger": {"rule": "/logger", "methods": ["GET"]},
             "_loggers": {"rule": "/loggers", "methods": ["GET"]}
         }
 
@@ -20,8 +21,9 @@ logger: Logger = Logger(LoginManager().kernel_loader)
 
 
 @logger.route(**logger.detail()["_logger"])
-def _get_logger(file: str) -> str:
-    return logger.flask.send_from_directory(logger.config["logger_folder"], file)
+def _get_logger() -> str:
+    ThreadPool.validate(logger.flask.request.json, ["file"])
+    return logger.flask.send_from_directory(logger.config["logger_folder"], logger.flask.request.json["file"])
 
 
 @logger.route(**logger.detail()["_loggers"])

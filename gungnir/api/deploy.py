@@ -13,8 +13,8 @@ class Deploy(Blueprint):
 
     def detail(self) -> typing.Dict[str, typing.Dict[str, typing.Union[str, typing.List[str]]]]:
         return {
-            "_status": {"rule": "/status", "methods": ["GET"]},
-            "_deploy": {"rule": "/deploy", "methods": ["POST"]}
+            "_deploy": {"rule": "/deploy", "methods": ["POST"]},
+            "_status": {"rule": "/status", "methods": ["GET"]}
         }
 
 

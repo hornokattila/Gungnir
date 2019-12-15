@@ -19,6 +19,14 @@ class Upload(Blueprint):
 upload: Upload = Upload(LoginManager().kernel_loader)
 
 
+@upload.route(**upload.detail()["_uploads"])
+def _get_uploads() -> str:
+    uploads: typing.Dict[str, typing.Dict[str, int]] = {}
+    for file in os.scandir(upload.config["upload_folder"]):
+        uploads[file.name] = dict(zip(("mode", "ino", "dev", "nlink", "uid", "gid", "size", "atime", "mtime", "ctime"), file.stat()))
+    return upload.flask.json.dumps(uploads)
+
+
 @upload.route(**upload.detail()["_upload"])
 def _set_upload() -> str:
     uploads: typing.List[str] = []
@@ -28,12 +36,4 @@ def _set_upload() -> str:
         if not os.path.isfile(path):
             upload.flask.request.files[name].save(path)
             uploads.append(name)
-    return upload.flask.json.dumps(uploads)
-
-
-@upload.route(**upload.detail()["_uploads"])
-def _get_uploads() -> str:
-    uploads: typing.Dict[str, typing.Dict[str, int]] = {}
-    for file in os.scandir(upload.config["upload_folder"]):
-        uploads[file.name] = dict(zip(("mode", "ino", "dev", "nlink", "uid", "gid", "size", "atime", "mtime", "ctime"), file.stat()))
     return upload.flask.json.dumps(uploads)

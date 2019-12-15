@@ -9,8 +9,7 @@ from gungnir.api.upload import upload
 from gungnir.gui.visual import visual
 from gungnir.utils.Blueprint import Blueprint
 
-url_prefix: str = "/api"
-urls: typing.List[Blueprint] = [
+prints: typing.List[Blueprint] = [
     deploy,
     health,
     logger,
@@ -19,3 +18,4 @@ urls: typing.List[Blueprint] = [
     upload,
     visual
 ]
+prints_prefix: str = "/api"

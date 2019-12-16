@@ -28,4 +28,4 @@ def get_detail() -> str:
 
 @visual.route(**visual.detail()["visual"])
 def get_visual() -> str:
-    return visual.flask.render_template("visual.html", detail=get_detail())
+    return visual.flask.render_template("visual.html", detail=visual.flask.json.loads(get_detail()))

@@ -18,4 +18,5 @@ urls: typing.List[Blueprint] = [
     upload,
     visual
 ]
+
 urls_prefix: str = "/api"

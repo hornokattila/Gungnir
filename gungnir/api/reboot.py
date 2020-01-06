@@ -28,7 +28,7 @@ def _set_reboot() -> str:
 @reboot.route(**reboot.detail()["_remove"])
 def _set_remove() -> str:
     uploads: typing.List[str] = []
-    ThreadPool.validate(reboot.flask.request.json, ["max_size"])
+    ThreadPool.verify(reboot.flask.request.json, ["max_size"])
     for file in os.scandir(reboot.config["upload_folder"]):
         if file.stat().st_size.__gt__(reboot.flask.request.json["max_size"]):
             name: str = file.name

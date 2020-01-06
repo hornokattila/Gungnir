@@ -6,10 +6,10 @@ executor: ThreadPoolExecutor = ThreadPoolExecutor(1)
 
 class ThreadPool:
     @staticmethod
-    def submit(function: typing.Callable[[str], typing.Union[int, None]], args: str):
-        executor.submit(function, args)
+    def submit(record: typing.Callable[[str], typing.Union[int, None]], args: str):
+        executor.submit(record, args)
 
     @staticmethod
-    def validate(json: typing.Dict[str, str], keys: typing.List[str]) -> None:
+    def verify(json: typing.Dict[str, str], keys: typing.List[str]) -> None:
         if set(json.keys()) != set(keys):
             raise ProcessLookupError()

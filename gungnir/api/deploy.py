@@ -28,7 +28,7 @@ def _get_status() -> str:
 
 @deploy.route(**deploy.detail()["_deploy"])
 def _set_deploy() -> str:
-    ThreadPool.validate(deploy.flask.request.json, ["script"])
+    ThreadPool.verify(deploy.flask.request.json, ["script"])
     name: str = uuid.uuid4().get_hex()
     path: str = os.path.join(deploy.config["submit_folder"], "{0}.bat".format(name))
     with open(path, "x") as file:

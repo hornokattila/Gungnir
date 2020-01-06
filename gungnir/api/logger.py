@@ -22,7 +22,7 @@ logger: Logger = Logger(LoginManager().kernel_loader)
 
 @logger.route(**logger.detail()["_logger"])
 def _get_logger() -> str:
-    ThreadPool.validate(logger.flask.request.json, ["file"])
+    ThreadPool.verify(logger.flask.request.json, ["file"])
     return logger.flask.send_from_directory(logger.config["logger_folder"], logger.flask.request.json["file"])
 
 

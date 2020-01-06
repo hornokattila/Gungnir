@@ -6,8 +6,8 @@ executor: ThreadPoolExecutor = ThreadPoolExecutor(1)
 
 class ThreadPool:
     @staticmethod
-    def submit(record: typing.Callable[[str], typing.Union[int, None]], args: str):
-        executor.submit(record, args)
+    def submit(rule: typing.Callable[[str], typing.Union[int, None]], args: str):
+        executor.submit(rule, args)
 
     @staticmethod
     def verify(json: typing.Dict[str, str], keys: typing.List[str]) -> None:

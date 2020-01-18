@@ -1,2 +1,2 @@
-def test_update():
+def test_update() -> None:
     pass

@@ -1,2 +1,2 @@
-def test_LoginManager():
+def test_LoginManager() -> None:
     pass

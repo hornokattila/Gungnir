@@ -1,2 +1,2 @@
-def test_ThreadPool():
+def test_ThreadPool() -> None:
     pass

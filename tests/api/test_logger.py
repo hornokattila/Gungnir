@@ -1,2 +1,2 @@
-def test_logger():
+def test_logger() -> None:
     pass

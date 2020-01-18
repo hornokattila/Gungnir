@@ -1,2 +1,2 @@
-def test_deploy():
+def test_deploy() -> None:
     pass

@@ -1,2 +1,2 @@
-def test_Blueprint():
+def test_Blueprint() -> None:
     pass

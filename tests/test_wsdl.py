@@ -1,2 +1,2 @@
-def test_wsdl():
+def test_wsdl() -> None:
     pass

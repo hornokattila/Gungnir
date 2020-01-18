@@ -1,2 +1,2 @@
-def test_System():
+def test_System() -> None:
     pass

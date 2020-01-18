@@ -1,2 +1,2 @@
-def test_upload():
+def test_upload() -> None:
     pass

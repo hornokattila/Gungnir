@@ -1,2 +1,2 @@
-def test_health():
+def test_health() -> None:
     pass

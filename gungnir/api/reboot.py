@@ -3,6 +3,7 @@ import typing
 
 from gungnir.utils.Blueprint import Blueprint
 from gungnir.utils.LoginManager import LoginManager
+from gungnir.utils.System import System
 from gungnir.utils.ThreadPool import ThreadPool
 
 
@@ -24,6 +25,7 @@ reboot: Reboot = Reboot(LoginManager().shadow_loader)
 def _set_reboot() -> str:
     volume: typing.Dict[str, int] = {"volume": ThreadPool.volume()}
     ThreadPool.finish()
+    System.call("reboot")
     return reboot.flask.json.dumps(volume)
 
 

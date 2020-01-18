@@ -1,2 +1,2 @@
-def test_visual():
+def test_visual() -> None:
     pass

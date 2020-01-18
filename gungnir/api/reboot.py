@@ -22,7 +22,9 @@ reboot: Reboot = Reboot(LoginManager().kernel_loader)
 
 @reboot.route(**reboot.detail()["_reboot"])
 def _set_reboot() -> str:
-    raise NotImplementedError()
+    volume: typing.Dict[str, int] = {"volume": ThreadPool.volume()}
+    ThreadPool.finish()
+    return reboot.flask.json.dumps(volume)
 
 
 @reboot.route(**reboot.detail()["_remove"])

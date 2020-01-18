@@ -15,7 +15,7 @@ class Update(Blueprint):
         }
 
 
-update: Update = Update(LoginManager().kernel_loader)
+update: Update = Update(LoginManager().shadow_loader)
 
 
 @update.route(**update.detail()["_system"])

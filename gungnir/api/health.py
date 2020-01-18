@@ -16,7 +16,7 @@ class Health(Blueprint):
         }
 
 
-health: Health = Health(LoginManager().kernel_loader)
+health: Health = Health(LoginManager().shadow_loader)
 
 
 @health.route(**health.detail()["_device"])

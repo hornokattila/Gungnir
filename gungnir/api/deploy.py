@@ -18,7 +18,7 @@ class Deploy(Blueprint):
         }
 
 
-deploy: Deploy = Deploy(LoginManager().kernel_loader)
+deploy: Deploy = Deploy(LoginManager().shadow_loader)
 
 
 @deploy.route(**deploy.detail()["_status"])

@@ -1,4 +1,7 @@
+import os
 import sys
+import time
+from concurrent.futures.thread import ThreadPoolExecutor
 
 
 class System:
@@ -10,7 +13,9 @@ class System:
             raise PermissionError()
 
     def _reboot_linux(self) -> None:
-        raise NotImplementedError()
+        executor: ThreadPoolExecutor = ThreadPoolExecutor(1)
+        executor.submit(time.sleep, 2)
+        executor.submit(os.system, "reboot")
 
     def _reboot_win32(self) -> None:
         raise NotImplementedError()

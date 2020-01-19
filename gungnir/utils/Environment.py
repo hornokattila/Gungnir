@@ -3,7 +3,7 @@ import sys
 
 
 class Environment(enum.Enum):
-    REBOOT = {"linaux": "reboot"}
+    REBOOT = {"linux": "reboot"}
 
     def decode(self) -> str:
         try:

@@ -15,6 +15,3 @@ class LoginManager:
 
     def _shadow_linux(self, username: str, password: str) -> None:
         raise NotImplementedError()
-
-    def _shadow_win32(self, username: str, password: str) -> None:
-        raise NotImplementedError()

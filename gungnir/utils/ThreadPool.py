@@ -6,10 +6,6 @@ executor: ThreadPoolExecutor = ThreadPoolExecutor(1)
 
 class ThreadPool:
     @staticmethod
-    def finish() -> None:
-        executor.shutdown(wait=False)
-
-    @staticmethod
     def submit(rule: typing.Callable[[str], typing.Union[int, None]], args: str) -> None:
         executor.submit(rule, args)
 

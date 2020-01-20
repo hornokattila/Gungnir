@@ -1,4 +1,7 @@
 import base64
+import crypt
+import os
+import spwd
 import sys
 import typing
 
@@ -14,4 +17,7 @@ class LoginManager:
         pass
 
     def _shadow_linux(self, username: str, password: str) -> None:
-        raise NotImplementedError()
+        sp_namp: str = os.getlogin()
+        sp_pwdp: str = spwd.getspnam(sp_namp).sp_pwdp
+        if sp_namp.__ne__(username) or sp_pwdp.__ne__(crypt.crypt(password, sp_pwdp)):
+            raise PermissionError()

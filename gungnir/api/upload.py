@@ -6,14 +6,14 @@ from gungnir.utils.LoginManager import LoginManager
 
 
 class Upload(Blueprint):
-    def enable(self) -> None:
-        os.makedirs(self.config["upload_folder"], exist_ok=True)
-
     def detail(self) -> typing.Dict[str, typing.Dict[str, typing.Union[str, typing.List[str]]]]:
         return {
             "_upload": {"rule": "/upload", "methods": ["POST"]},
             "_uploads": {"rule": "/uploads", "methods": ["GET"]}
         }
+
+    def enable(self) -> None:
+        os.makedirs(self.config["upload_folder"], exist_ok=True)
 
 
 upload: Upload = Upload(LoginManager().shadow_loader)

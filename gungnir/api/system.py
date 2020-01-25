@@ -4,28 +4,28 @@ from gungnir.utils.Blueprint import Blueprint
 from gungnir.utils.LoginManager import LoginManager
 
 
-class Update(Blueprint):
-    def enable(self) -> None:
-        pass
-
+class System(Blueprint):
     def detail(self) -> typing.Dict[str, typing.Dict[str, typing.Union[str, typing.List[str]]]]:
         return {
             "_detail": {"rule": "/detail", "methods": ["GET"]},
             "_system": {"rule": "/system", "methods": ["GET"]}
         }
 
+    def enable(self) -> None:
+        pass
 
-update: Update = Update(LoginManager().shadow_loader)
+
+system: System = System(LoginManager().shadow_loader)
 
 
-@update.route(**update.detail()["_detail"])
+@system.route(**system.detail()["_detail"])
 def _get_detail() -> str:
     detail: typing.Dict[str, typing.Dict[str, typing.Union[str, typing.List[str]]]] = {}
-    for rule in update.mirror:
+    for rule in system.mirror:
         detail.update(rule.detail())
-    return update.flask.json.dumps(detail)
+    return system.flask.json.dumps(detail)
 
 
-@update.route(**update.detail()["_system"])
+@system.route(**system.detail()["_system"])
 def _get_system() -> str:
-    return update.flask.json.dumps(update.system)
+    return system.flask.json.dumps(system.system)

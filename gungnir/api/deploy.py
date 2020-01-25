@@ -8,14 +8,14 @@ from gungnir.utils.ThreadPool import ThreadPool
 
 
 class Deploy(Blueprint):
-    def enable(self) -> None:
-        os.makedirs(self.config["submit_folder"], exist_ok=True)
-
     def detail(self) -> typing.Dict[str, typing.Dict[str, typing.Union[str, typing.List[str]]]]:
         return {
             "_deploy": {"rule": "/deploy", "methods": ["POST"]},
             "_status": {"rule": "/status", "methods": ["GET"]}
         }
+
+    def enable(self) -> None:
+        os.makedirs(self.config["submit_folder"], exist_ok=True)
 
 
 deploy: Deploy = Deploy(LoginManager().shadow_loader)

@@ -8,14 +8,14 @@ from gungnir.utils.ThreadPool import ThreadPool
 
 
 class Reboot(Blueprint):
-    def enable(self) -> None:
-        pass
-
     def detail(self) -> typing.Dict[str, typing.Dict[str, typing.Union[str, typing.List[str]]]]:
         return {
             "_reboot": {"rule": "/reboot", "methods": ["POST"]},
             "_remove": {"rule": "/remove", "methods": ["POST"]}
         }
+
+    def enable(self) -> None:
+        pass
 
 
 reboot: Reboot = Reboot(LoginManager().shadow_loader)

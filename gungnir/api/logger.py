@@ -7,14 +7,14 @@ from gungnir.utils.ThreadPool import ThreadPool
 
 
 class Logger(Blueprint):
-    def enable(self) -> None:
-        os.makedirs(self.config["logger_folder"], exist_ok=True)
-
     def detail(self) -> typing.Dict[str, typing.Dict[str, typing.Union[str, typing.List[str]]]]:
         return {
             "_logger": {"rule": "/logger", "methods": ["GET"]},
             "_loggers": {"rule": "/loggers", "methods": ["GET"]}
         }
+
+    def enable(self) -> None:
+        os.makedirs(self.config["logger_folder"], exist_ok=True)
 
 
 logger: Logger = Logger(LoginManager().shadow_loader)

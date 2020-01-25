@@ -12,9 +12,6 @@ class LoginManager:
         except (AttributeError, TypeError, ValueError):
             raise PermissionError()
 
-    def vacant_loader(self, headers: typing.Dict[str, str]) -> None:
-        pass
-
     def _shadow_linux(self, username: str, password: str) -> None:
         sp_namp: str = os.getlogin()
         sp_pwdp: str = importlib.import_module("spwd").getspnam(sp_namp).sp_pwdp

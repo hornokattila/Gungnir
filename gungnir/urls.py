@@ -6,7 +6,6 @@ from gungnir.api.logger import logger
 from gungnir.api.reboot import reboot
 from gungnir.api.update import update
 from gungnir.api.upload import upload
-from gungnir.gui.visual import visual
 from gungnir.utils.Blueprint import Blueprint
 
 urls: typing.List[Blueprint] = [
@@ -15,8 +14,7 @@ urls: typing.List[Blueprint] = [
     logger,
     reboot,
     update,
-    upload,
-    visual
+    upload
 ]
 
 urls_prefix: str = "/api"

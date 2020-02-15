@@ -8,6 +8,7 @@ from gungnir.utils.LoginManager import LoginManager
 class Folder(Blueprint):
     def detail(self) -> typing.Dict[str, typing.Dict[str, typing.Union[str, typing.List[str]]]]:
         return {
+            "_delete_file": {"rule": "/folders/<path>/<file>", "methods": ["DELETE"]},
             "_file": {"rule": "/folders/<path>/<file>", "methods": ["GET"]},
             "_files": {"rule": "/folders/<path>", "methods": ["GET"]},
             "_folders": {"rule": "/folders", "methods": ["GET"]},
@@ -20,6 +21,12 @@ class Folder(Blueprint):
 
 
 folder: Folder = Folder(LoginManager().shadow_loader)
+
+
+@folder.route(**folder.detail()["_delete_file"])
+def _delete_file(path: str, file: str) -> str:
+    os.remove(os.path.join(folder.folder[path], file))
+    return ""
 
 
 @folder.route(**folder.detail()["_file"])

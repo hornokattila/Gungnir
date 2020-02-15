@@ -36,5 +36,5 @@ def _deploy() -> str:
 
 @deploy.route(**deploy.detail()["_reboot"])
 def _reboot() -> str:
-    ThreadPool.submit(os.system, Environment.REBOOT.decode())
+    os.system(Environment.REBOOT.decode())
     return ""

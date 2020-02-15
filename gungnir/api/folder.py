@@ -1,0 +1,52 @@
+import os
+import typing
+
+from gungnir.utils.Blueprint import Blueprint
+from gungnir.utils.LoginManager import LoginManager
+
+
+class Folder(Blueprint):
+    def detail(self) -> typing.Dict[str, typing.Dict[str, typing.Union[str, typing.List[str]]]]:
+        return {
+            "_file": {"rule": "/folders/<path>/<file>", "methods": ["GET"]},
+            "_files": {"rule": "/folders/<path>", "methods": ["GET"]},
+            "_folders": {"rule": "/folders", "methods": ["GET"]},
+            "_post_file": {"rule": "/folders/<path>", "methods": ["POST"]}
+        }
+
+    def enable(self) -> None:
+        for path in self.holder.values():
+            os.makedirs(path, exist_ok=True)
+
+
+folder: Folder = Folder(LoginManager().shadow_loader)
+
+
+@folder.route(**folder.detail()["_file"])
+def _file(path: str, file: str) -> str:
+    return folder.flask.send_from_directory(folder.holder[path], file)
+
+
+@folder.route(**folder.detail()["_files"])
+def _files(path: str) -> str:
+    files: typing.Dict[str, typing.Dict[str, int]] = {}
+    for file in os.scandir(folder.holder[path]):
+        files[file.name] = dict(zip(("mode", "ino", "dev", "nlink", "uid", "gid", "size", "atime", "mtime", "ctime"), file.stat()))
+    return folder.flask.json.dumps(files)
+
+
+@folder.route(**folder.detail()["_folders"])
+def _folders() -> str:
+    return folder.flask.json.dumps(list(folder.holder.keys()))
+
+
+@folder.route(**folder.detail()["_post_file"])
+def _post_file(path: str) -> str:
+    files: typing.List[str] = []
+    for file in folder.flask.request.files:
+        name: str = folder.werkzeug.utils.secure_filename(file)
+        path: str = os.path.join(folder.holder[path], name)
+        if not os.path.isfile(path):
+            folder.flask.request.files[name].save(path)
+            files.append(name)
+    return folder.flask.json.dumps(files)

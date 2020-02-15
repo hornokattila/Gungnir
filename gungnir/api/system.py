@@ -19,7 +19,7 @@ system: System = System(LoginManager().shadow_loader)
 
 
 @system.route(**system.detail()["_detail"])
-def _get_detail() -> str:
+def _detail() -> str:
     detail: typing.Dict[str, typing.Dict[str, typing.Union[str, typing.List[str]]]] = {}
     for rule in system.mirror:
         detail.update(rule.detail())
@@ -27,5 +27,5 @@ def _get_detail() -> str:
 
 
 @system.route(**system.detail()["_system"])
-def _get_system() -> str:
+def _system() -> str:
     return system.flask.json.dumps(system.system)

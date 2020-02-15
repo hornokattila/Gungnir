@@ -20,10 +20,10 @@ device: Device = Device(LoginManager().shadow_loader)
 
 
 @device.route(**device.detail()["_device"])
-def _get_device() -> str:
+def _device() -> str:
     return device.flask.json.dumps(dict(zip(("sysname", "nodename", "release", "version", "machine"), os.uname())))
 
 
 @device.route(**device.detail()["_health"])
-def _get_health() -> str:
+def _health() -> str:
     return ""

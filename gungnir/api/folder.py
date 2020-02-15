@@ -42,11 +42,7 @@ def _folders() -> str:
 
 @folder.route(**folder.detail()["_post_file"])
 def _post_file(path: str) -> str:
-    files: typing.List[str] = []
     for file in folder.flask.request.files:
         name: str = folder.werkzeug.utils.secure_filename(file)
-        path: str = os.path.join(folder.holder[path], name)
-        if not os.path.isfile(path):
-            folder.flask.request.files[name].save(path)
-            files.append(name)
-    return folder.flask.json.dumps(files)
+        folder.flask.request.files[name].save(os.path.join(folder.holder[path], name))
+    return ""

@@ -13,7 +13,3 @@ class ThreadPool:
     def verify(json: typing.Dict[str, str], keys: typing.List[str]) -> None:
         if set(json.keys()) != set(keys):
             raise ProcessLookupError()
-
-    @staticmethod
-    def volume() -> int:
-        return executor._work_queue.qsize()

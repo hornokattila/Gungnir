@@ -3,13 +3,17 @@ import typing
 import uuid
 
 from gungnir.utils.Blueprint import Blueprint
+from gungnir.utils.Environment import Environment
 from gungnir.utils.LoginManager import LoginManager
 from gungnir.utils.ThreadPool import ThreadPool
 
 
 class Deploy(Blueprint):
     def detail(self) -> typing.Dict[str, typing.Dict[str, typing.Union[str, typing.List[str]]]]:
-        return {"_deploy": {"rule": "/deploy", "methods": ["POST"]}}
+        return {
+            "_deploy": {"rule": "/deploy", "methods": ["POST"]},
+            "_reboot": {"rule": "/reboot", "methods": ["POST"]}
+        }
 
     def enable(self) -> None:
         os.makedirs(self.holder["submit_folder"], exist_ok=True)
@@ -28,3 +32,9 @@ def _deploy() -> str:
     ThreadPool.submit(os.system, "{0} {1} > {2}".format(path, deploy.holder["upload_folder"], os.path.join(deploy.holder["logger_folder"], "{0}.log".format(name))))
     ThreadPool.submit(os.remove, path)
     return deploy.flask.json.dumps([name])
+
+
+@deploy.route(**deploy.detail()["_reboot"])
+def _reboot() -> str:
+    ThreadPool.submit(os.system, Environment.REBOOT.decode())
+    return ""

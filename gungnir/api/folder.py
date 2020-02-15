@@ -11,7 +11,6 @@ class Folder(Blueprint):
             "_delete_file": {"rule": "/folders/<path>/<file>", "methods": ["DELETE"]},
             "_file": {"rule": "/folders/<path>/<file>", "methods": ["GET"]},
             "_files": {"rule": "/folders/<path>", "methods": ["GET"]},
-            "_folders": {"rule": "/folders", "methods": ["GET"]},
             "_post_file": {"rule": "/folders/<path>", "methods": ["POST"]}
         }
 
@@ -40,11 +39,6 @@ def _files(path: str) -> str:
     for file in os.scandir(folder.folder[path]):
         files[file.name] = dict(zip(("mode", "ino", "dev", "nlink", "uid", "gid", "size", "atime", "mtime", "ctime"), file.stat()))
     return folder.flask.json.dumps(files)
-
-
-@folder.route(**folder.detail()["_folders"])
-def _folders() -> str:
-    return folder.flask.json.dumps(list(folder.folder.keys()))
 
 
 @folder.route(**folder.detail()["_post_file"])

@@ -16,7 +16,7 @@ class Deploy(Blueprint):
         }
 
     def enable(self) -> None:
-        os.makedirs(self.holder["submit_folder"], exist_ok=True)
+        pass
 
 
 deploy: Deploy = Deploy(LoginManager().shadow_loader)
@@ -25,13 +25,13 @@ deploy: Deploy = Deploy(LoginManager().shadow_loader)
 @deploy.route(**deploy.detail()["_deploy"])
 def _deploy() -> str:
     ThreadPool.verify(deploy.flask.request.json, ["script"])
-    name: str = uuid.uuid4().get_hex()
-    path: str = os.path.join(deploy.holder["submit_folder"], "{0}.bat".format(name))
+    name: str = uuid.uuid4().hex
+    path: str = os.path.join(deploy.folder["deploy"], "{0}.bat".format(name))
     with open(path, "x") as file:
         file.write(deploy.flask.request.json["script"])
-    ThreadPool.submit(os.system, "{0} {1} > {2}".format(path, deploy.holder["upload_folder"], os.path.join(deploy.holder["logger_folder"], "{0}.log".format(name))))
+    ThreadPool.submit(os.system, "{0} {1} {2} > {3}".format(Environment.RUNNER.decode(), path, deploy.folder["upload"], os.path.join(deploy.folder["logger"], "{0}.log".format(name))))
     ThreadPool.submit(os.remove, path)
-    return deploy.flask.json.dumps([name])
+    return name
 
 
 @deploy.route(**deploy.detail()["_reboot"])

@@ -10,8 +10,8 @@ class Blueprint(abc.ABC, flask.Blueprint):
         super().__init__(self.__class__.__name__, self.__class__.__module__)
         self.before_request(self._request_loader)
         self.flask: flask = flask
+        self.folder: typing.Dict[str, typing.Union[bool, int, str]] = {}
         self.header_loader: typing.Callable[[typing.Dict[str, str]], None] = header_loader
-        self.holder: typing.Dict[str, typing.Union[bool, int, str]] = {}
         self.mirror: typing.List[Blueprint] = []
         self.system: typing.Dict[str, typing.Union[bool, int, str]] = {}
         self.werkzeug: werkzeug = werkzeug

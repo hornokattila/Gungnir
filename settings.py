@@ -2,10 +2,10 @@ import os
 import typing
 
 settings: typing.Dict[str, typing.Dict[str, typing.Union[bool, int, str]]] = {
-    "holder": {
-        "logger_folder": os.path.abspath("out/logger"),
-        "submit_folder": os.path.abspath("out/submit"),
-        "upload_folder": os.path.abspath("out/upload")
+    "folder": {
+        "deploy": os.path.abspath("out/submit"),
+        "logger": os.path.abspath("out/logger"),
+        "upload": os.path.abspath("out/upload")
     },
     "server": {
         "host": "0.0.0.0",

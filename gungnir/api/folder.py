@@ -35,10 +35,10 @@ def _file(path: str, file: str) -> str:
 
 @folder.route(**folder.detail()["_files"])
 def _files(path: str) -> str:
-    files: typing.Dict[str, typing.Dict[str, int]] = {}
+    result: typing.Dict[str, typing.Dict[str, int]] = {}
     for file in os.scandir(folder.folder[path]):
-        files[file.name] = dict(zip(("mode", "ino", "dev", "nlink", "uid", "gid", "size", "atime", "mtime", "ctime"), file.stat()))
-    return folder.flask.json.dumps(files)
+        result[file.name] = dict(zip(("mode", "ino", "dev", "nlink", "uid", "gid", "size", "atime", "mtime", "ctime"), file.stat()))
+    return folder.flask.json.dumps(result)
 
 
 @folder.route(**folder.detail()["_post_file"])

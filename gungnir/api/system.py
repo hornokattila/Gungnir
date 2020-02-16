@@ -20,10 +20,10 @@ system: System = System(LoginManager().shadow_loader)
 
 @system.route(**system.detail()["_detail"])
 def _detail() -> str:
-    detail: typing.Dict[str, typing.Dict[str, typing.Union[str, typing.List[str]]]] = {}
+    result: typing.Dict[str, typing.Dict[str, typing.Union[str, typing.List[str]]]] = {}
     for rule in system.mirror:
-        detail.update(rule.detail())
-    return system.flask.json.dumps(detail)
+        result.update(rule.detail())
+    return system.flask.json.dumps(result)
 
 
 @system.route(**system.detail()["_system"])

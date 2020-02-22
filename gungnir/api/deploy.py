@@ -9,11 +9,11 @@ from gungnir.utils.ThreadPool import ThreadPool
 
 
 class Deploy(Blueprint):
-    def detail(self) -> typing.Dict[str, typing.Dict[str, typing.Union[str, typing.List[str]]]]:
-        return {
-            "_deploy": {"rule": "/deploy", "methods": ["POST"]},
-            "_reboot": {"rule": "/reboot", "methods": ["POST"]}
-        }
+    def detail(self) -> typing.List[typing.Dict[str, typing.Union[str, typing.Callable[..., str], typing.List[str]]]]:
+        return [
+            {"rule": "/deploy", "endpoint": "_deploy", "view_func": _deploy, "methods": ["POST"]},
+            {"rule": "/reboot", "endpoint": "_reboot", "view_func": _reboot, "methods": ["POST"]}
+        ]
 
     def enable(self) -> None:
         pass
@@ -22,7 +22,6 @@ class Deploy(Blueprint):
 deploy: Deploy = Deploy(LoginManager().shadow_loader)
 
 
-@deploy.route(**deploy.detail()["_deploy"])
 def _deploy() -> str:
     ThreadPool.verify(deploy.flask.request.json, ["script"])
     name: str = uuid.uuid4().hex
@@ -34,7 +33,6 @@ def _deploy() -> str:
     return name
 
 
-@deploy.route(**deploy.detail()["_reboot"])
 def _reboot() -> str:
     os.system(Environment.REBOOT.decode())
     return ""

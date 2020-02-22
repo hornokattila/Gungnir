@@ -13,4 +13,4 @@ urls: typing.List[Blueprint] = [
     system
 ]
 
-urls_prefix: str = "/api"
+url_prefix: str = "/api"

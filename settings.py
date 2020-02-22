@@ -1,7 +1,7 @@
 import os
 import typing
 
-settings: typing.Dict[str, typing.Dict[str, typing.Union[bool, int, str]]] = {
+settings: typing.Dict[str, typing.Dict[str, typing.Union[int, str]]] = {
     "folder": {
         "deploy": os.path.abspath("out/submit"),
         "logger": os.path.abspath("out/logger"),

@@ -5,11 +5,11 @@ from gungnir.utils.LoginManager import LoginManager
 
 
 class System(Blueprint):
-    def detail(self) -> typing.Dict[str, typing.Dict[str, typing.Union[str, typing.List[str]]]]:
-        return {
-            "_detail": {"rule": "/detail", "methods": ["GET"]},
-            "_system": {"rule": "/system", "methods": ["GET"]}
-        }
+    def detail(self) -> typing.List[typing.Dict[str, typing.Union[str, typing.Callable[..., str], typing.List[str]]]]:
+        return [
+            {"rule": "/detail", "endpoint": "_detail", "view_func": _detail, "methods": ["GET"]},
+            {"rule": "/system", "endpoint": "_system", "view_func": _system, "methods": ["GET"]}
+        ]
 
     def enable(self) -> None:
         pass
@@ -18,14 +18,12 @@ class System(Blueprint):
 system: System = System(LoginManager().shadow_loader)
 
 
-@system.route(**system.detail()["_detail"])
 def _detail() -> str:
-    result: typing.Dict[str, typing.Dict[str, typing.Union[str, typing.List[str]]]] = {}
+    detail: typing.List[typing.Dict[str, typing.Union[str, typing.List[str]]]] = []
     for rule in system.mirror:
-        result.update(rule.detail())
-    return system.flask.json.dumps(result)
+        detail = [*detail, *rule.detail()]
+    return system.flask.json.dumps(detail, default=lambda object: object.__name__)
 
 
-@system.route(**system.detail()["_system"])
 def _system() -> str:
     return system.flask.json.dumps(system.system)

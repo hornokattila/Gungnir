@@ -6,15 +6,14 @@ from gungnir.utils.Blueprint import Blueprint
 
 
 class Flask(flask.Flask):
-    def run(self, **options: typing.Union[str, typing.Dict[str, typing.Union[bool, int, str]], typing.List[Blueprint]]) -> None:
-        urls: typing.List[Blueprint] = options.pop("urls")
-        urls_folder: typing.Dict[str, typing.Union[bool, int, str]] = options.pop("urls_folder")
-        urls_prefix: str = options.pop("urls_prefix")
-        urls_system: typing.Dict[str, typing.Union[bool, int, str]] = options.pop("urls_system")
-        for rule in urls:
-            rule.folder = urls_folder
-            rule.mirror = urls
-            rule.system = urls_system
+    def run(self, **options: typing.Union[str, typing.Dict[str, typing.Union[int, str]], typing.List[Blueprint]]) -> None:
+        mirror: typing.List[Blueprint] = options["urls"]
+        for rule in mirror:
+            rule.folder = options["folder"]
+            rule.mirror = mirror
+            rule.system = options["system"]
+            for detail in rule.detail():
+                rule.add_url_rule(**detail)
             rule.enable()
-            super().register_blueprint(rule, url_prefix=urls_prefix)
-        super().run(**options)
+            super().register_blueprint(rule, url_prefix=options["url_prefix"])
+        super().run(**options.pop("server"))

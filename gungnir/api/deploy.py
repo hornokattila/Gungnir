@@ -15,9 +15,6 @@ class Deploy(Blueprint):
             {"rule": "/reboot", "endpoint": "_reboot", "view_func": _reboot, "methods": ["POST"]}
         ]
 
-    def enable(self) -> None:
-        pass
-
 
 deploy: Deploy = Deploy(LoginManager().shadow_loader)
 
@@ -25,10 +22,10 @@ deploy: Deploy = Deploy(LoginManager().shadow_loader)
 def _deploy() -> str:
     ThreadPool.verify(deploy.flask.request.json, ["script"])
     name: str = uuid.uuid4().hex
-    path: str = os.path.join(deploy.folder["deploy"], name)
+    path: str = os.path.join(deploy.config["folder"], "deploy", name)
     with open(path, "x") as file:
         file.write(deploy.flask.request.json["script"])
-    ThreadPool.submit(os.system, "{0} {1} {2} > {3}".format(Environment.RUNNER.decode(), path, deploy.folder["upload"], os.path.join(deploy.folder["logger"], name)))
+    ThreadPool.submit(os.system, "{0} {1} {2} > {3}".format(Environment.RUNNER.decode(), path, os.path.join(deploy.config["folder"], "upload"), os.path.join(deploy.config["folder"], "logger", name)))
     ThreadPool.submit(os.remove, path)
     return name
 

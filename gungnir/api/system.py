@@ -11,9 +11,6 @@ class System(Blueprint):
             {"rule": "/system", "endpoint": "_system", "view_func": _system, "methods": ["GET"]}
         ]
 
-    def enable(self) -> None:
-        pass
-
 
 system: System = System(LoginManager().shadow_loader)
 

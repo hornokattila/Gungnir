@@ -12,9 +12,6 @@ class Device(Blueprint):
             {"rule": "/health", "endpoint": "_health", "view_func": _health, "methods": ["GET"]}
         ]
 
-    def enable(self) -> None:
-        pass
-
 
 device: Device = Device(LoginManager().shadow_loader)
 

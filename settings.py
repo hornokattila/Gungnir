@@ -2,10 +2,8 @@ import os
 import typing
 
 settings: typing.Dict[str, typing.Dict[str, typing.Union[int, str]]] = {
-    "folder": {
-        "deploy": os.path.abspath("out/submit"),
-        "logger": os.path.abspath("out/logger"),
-        "upload": os.path.abspath("out/upload")
+    "config": {
+        "folder": os.path.abspath("out")
     },
     "server": {
         "host": "0.0.0.0",

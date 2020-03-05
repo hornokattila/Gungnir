@@ -17,3 +17,6 @@ class LoginManager:
         sp_pwdp: str = importlib.import_module("spwd").getspnam(sp_namp).sp_pwdp
         if sp_namp.__ne__(username) or sp_pwdp.__ne__(importlib.import_module("crypt").crypt(password, sp_pwdp)):
             raise PermissionError()
+
+    def _shadow_win32(self, username: str, password: str) -> None:
+        pass

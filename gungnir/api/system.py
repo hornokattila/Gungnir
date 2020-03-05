@@ -18,7 +18,7 @@ system: System = System(LoginManager().shadow_loader)
 def _detail() -> str:
     detail: typing.List[typing.Dict[str, typing.Union[str, typing.List[str]]]] = []
     for rule in system.mirror:
-        detail = [*detail, *rule.detail()]
+        detail.extend(rule.detail())
     return system.flask.json.dumps(detail, default=lambda object: object.__name__)
 
 

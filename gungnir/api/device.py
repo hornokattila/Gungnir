@@ -1,4 +1,4 @@
-import os
+import platform
 import typing
 
 from gungnir.utils.Blueprint import Blueprint
@@ -17,7 +17,7 @@ device: Device = Device(LoginManager().shadow_loader)
 
 
 def _device() -> str:
-    return device.flask.json.dumps(dict(zip(("sysname", "nodename", "release", "version", "machine"), os.uname())))
+    return device.flask.json.dumps(dict(zip(("system", "node", "release", "version", "machine", "processor"), platform.uname())))
 
 
 def _health() -> str:

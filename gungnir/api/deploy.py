@@ -15,6 +15,10 @@ class Deploy(Blueprint):
             {"rule": "/reboot", "endpoint": "_reboot", "view_func": _reboot, "methods": ["POST"]}
         ]
 
+    def launch(self) -> None:
+        for folder in ["deploy", "logger", "upload"]:
+            os.makedirs(os.path.join(deploy.config["bucket"], folder))
+
 
 deploy: Deploy = Deploy(LoginManager().shadow_loader)
 

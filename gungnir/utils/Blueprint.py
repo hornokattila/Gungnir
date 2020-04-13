@@ -20,5 +20,8 @@ class Blueprint(abc.ABC, flask.Blueprint):
     def detail(self) -> typing.List[typing.Dict[str, typing.Union[str, typing.Callable[..., str], typing.List[str]]]]:
         pass
 
+    def launch(self) -> None:
+        pass
+
     def _request_loader(self) -> None:
         self.header_loader(self.flask.request.headers)

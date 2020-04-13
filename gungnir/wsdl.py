@@ -12,6 +12,7 @@ class Flask(flask.Flask):
             rule.config = options["config"]
             rule.mirror = mirror
             rule.system = options["system"]
+            rule.launch()
             for detail in rule.detail():
                 rule.add_url_rule(**detail)
             super().register_blueprint(rule, url_prefix=options["url_prefix"])

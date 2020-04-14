@@ -17,7 +17,7 @@ class Deploy(Blueprint):
 
     def launch(self) -> None:
         for folder in ["deploy", "logger", "upload"]:
-            os.makedirs(os.path.join(deploy.config["bucket"], folder))
+            os.makedirs(os.path.join(deploy.config["bucket"], folder), exist_ok=True)
 
 
 deploy: Deploy = Deploy(LoginManager().shadow_loader)

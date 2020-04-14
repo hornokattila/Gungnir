@@ -36,9 +36,5 @@ def _files(folder: str) -> str:
 
 def _post_file(folder: str) -> str:
     for file in bucket.flask.request.files:
-        try:
-            file.save(os.path.join(bucket.config["bucket"], folder, bucket.werkzeug.utils.secure_filename(file)))
-        except FileNotFoundError:
-            os.makedirs(os.path.join(bucket.config["bucket"], folder))
-            return _post_file(folder)
+        file.save(os.path.join(bucket.config["bucket"], folder, bucket.werkzeug.utils.secure_filename(file)))
     return ""

@@ -3,11 +3,6 @@ import sys
 
 
 class Environment(enum.Enum):
-    REBOOT = {
-        "linux": "reboot",
-        "win32": "shutdown -r"
-    }
-
     RUNNER = {
         "linux": "bash",
         "win32": "powershell"

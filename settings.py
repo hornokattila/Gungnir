@@ -11,7 +11,8 @@ settings: typing.Dict[str, typing.Dict[str, typing.Union[int, str]]] = {
         "ssl_context": "adhoc"
     },
     "system": {
-        "name": "Gungnir",
+        "groupId": "Myrkheim",
+        "artifactId": "Gungnir",
         "version": "1.0.0"
     }
 }

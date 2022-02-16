@@ -11,7 +11,7 @@ class Bucket(Blueprint):
             {"rule": "/bucket/<folder>/<file>", "endpoint": "_delete_file", "view_func": _delete_file, "methods": ["DELETE"]},
             {"rule": "/bucket/<folder>/<file>", "endpoint": "_file", "view_func": _file, "methods": ["GET"]},
             {"rule": "/bucket/<folder>", "endpoint": "_files", "view_func": _files, "methods": ["GET"]},
-            {"rule": "/bucket/<folder>", "endpoint": "_post_file", "view_func": _post_file, "methods": ["POST"]}
+            {"rule": "/bucket/<folder>", "endpoint": "_put_file", "view_func": _put_file, "methods": ["PUT"]}
         ]
 
 
@@ -34,7 +34,7 @@ def _files(folder: str) -> str:
     return bucket.flask.json.dumps(result)
 
 
-def _post_file(folder: str) -> str:
+def _put_file(folder: str) -> str:
     for file in bucket.flask.request.files:
         file.save(os.path.join(bucket.config["bucket"], folder, bucket.werkzeug.utils.secure_filename(file)))
     return ""

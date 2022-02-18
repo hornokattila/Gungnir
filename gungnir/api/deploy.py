@@ -9,7 +9,7 @@ from gungnir.utils.ThreadPool import ThreadPool
 
 class Deploy(Blueprint):
     def detail(self) -> typing.List[typing.Dict[str, typing.Union[str, typing.Callable[..., str], typing.List[str]]]]:
-        return [{"rule": "/deploy", "endpoint": "_deploy", "view_func": _deploy, "methods": ["POST"]}]
+        return [{"rule": "/deploy", "endpoint": "_put_script", "view_func": _put_script, "methods": ["PUT"]}]
 
     def launch(self) -> None:
         for folder in ["deploy", "logger", "upload"]:
@@ -19,7 +19,7 @@ class Deploy(Blueprint):
 deploy: Deploy = Deploy(LoginManager().shadow_loader)
 
 
-def _deploy() -> str:
+def _put_script() -> str:
     ThreadPool.verify(deploy.flask.request.json, ["script"])
     name: str = uuid.uuid4().hex
     path: str = os.path.join(deploy.config["bucket"], "deploy", name)

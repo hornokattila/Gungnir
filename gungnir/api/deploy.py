@@ -20,10 +20,9 @@ deploy: Deploy = Deploy(LoginManager().shadow_loader)
 
 
 def _put_script() -> str:
-    ThreadPool.verify(deploy.flask.request.json, ["script"])
     name: str = uuid.uuid4().hex
     path: str = os.path.join(deploy.config["bucket"], "deploy", name)
-    with open(path, "x") as file:
-        file.write(deploy.flask.request.json["script"])
+    with open(path, "wb") as file:
+        file.write(deploy.flask.request.data)
     ThreadPool.submit(path, os.path.join(deploy.config["bucket"], "upload"), os.path.join(deploy.config["bucket"], "logger", name))
     return name

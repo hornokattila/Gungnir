@@ -4,6 +4,7 @@ import sys
 
 class Environment(enum.Enum):
     RUNNER = {
+        "darwin": "zsh",
         "linux": "bash",
         "win32": "powershell"
     }

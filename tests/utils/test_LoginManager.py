@@ -1,3 +1,3 @@
 class TestLoginManager:
-    def test_shadow_loader(self):
+    def test_shadow_loader(self) -> None:
         assert True

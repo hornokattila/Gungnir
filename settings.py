@@ -3,7 +3,7 @@ import typing
 
 settings: typing.Dict[str, typing.Dict[str, typing.Union[int, str]]] = {
     "config": {
-        "bucket": os.path.abspath("out")
+        "bucket": os.path.abspath(".pytest_cache")
     },
     "server": {
         "host": "0.0.0.0",

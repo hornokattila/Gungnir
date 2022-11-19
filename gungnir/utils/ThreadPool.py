@@ -1,5 +1,4 @@
 import os
-import typing
 from concurrent.futures.thread import ThreadPoolExecutor
 
 from gungnir.utils.Environment import Environment

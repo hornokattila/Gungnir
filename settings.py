@@ -3,12 +3,12 @@ import typing
 
 settings: typing.Dict[str, typing.Dict[str, typing.Union[int, str]]] = {
     "config": {
-        "bucket": os.path.abspath(".pytest_cache")
+        "bucket": os.environ["BUCKET"]
     },
     "server": {
         "host": "0.0.0.0",
         "port": 443,
-        "ssl_context": "adhoc"
+        "ssl_context": (os.environ["PUB"], os.environ["KEY"])
     },
     "system": {
         "groupId": "vaskaktusz",

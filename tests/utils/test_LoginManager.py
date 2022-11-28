@@ -1,3 +1,5 @@
+import sys
+
 import pytest
 
 from gungnir.utils.LoginManager import LoginManager
@@ -11,4 +13,5 @@ class TestLoginManager:
             self.loginManager.shadow_loader({})
 
     def test_shadow_loader_positive(self) -> None:
+        sys.platform = "win32"
         self.loginManager.shadow_loader({"Authorization": "Basic YTph"})

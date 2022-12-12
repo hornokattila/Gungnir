@@ -3,7 +3,7 @@ from concurrent.futures.thread import ThreadPoolExecutor
 
 from gungnir.utils.Environment import Environment
 
-executor: ThreadPoolExecutor = ThreadPoolExecutor(1)
+executor: ThreadPoolExecutor = ThreadPoolExecutor()
 
 
 class ThreadPool:

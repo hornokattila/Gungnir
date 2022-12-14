@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/zsh
 
 FOLDER=$(dirname "$0")
 export BUCKET=${FOLDER}/.pytest_cache

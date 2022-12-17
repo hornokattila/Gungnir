@@ -1,7 +1,7 @@
 import os
 import typing
 
-settings: typing.Dict[str, typing.Dict[str, typing.Union[int, str]]] = {
+settings: typing.Dict[str, typing.Dict[str, typing.Union[int, str, typing.Tuple[str, str]]]] = {
     "config": {
         "bucket": os.environ.get("BUCKET", os.path.join(os.path.dirname(__file__), ".pytest_cache"))
     },

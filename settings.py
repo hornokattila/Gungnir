@@ -11,8 +11,8 @@ settings: typing.Dict[str, typing.Dict[str, typing.Union[int, str, typing.Tuple[
         "ssl_context": (os.environ["PUB"], os.environ["KEY"]) if {"PUB", "KEY"}.issubset(os.environ) else "adhoc"
     },
     "system": {
-        "groupId": "vaskaktusz",
-        "artifactId": "gungnir",
+        "author": "vaskaktusz",
+        "name": "gungnir",
         "version": "1.0.0"
     }
 }

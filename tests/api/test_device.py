@@ -1,10 +1,7 @@
 from gungnir.api.device import device
+from tests.TestUtil import TestUtil
 
 
 class TestDevice:
     def test_health(self) -> None:
-        result: bool = False
-        for detail in device.detail():
-            if detail["rule"] == "/health":
-                result |= detail["view_func"]() == ""
-        assert result
+        assert TestUtil.view_func(device, "/health") == ""

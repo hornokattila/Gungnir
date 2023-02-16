@@ -6,7 +6,7 @@ from gungnir.utils.LoginManager import LoginManager
 
 
 class Bucket(Blueprint):
-    def detail(self) -> typing.List[typing.Dict[str, typing.Union[str, typing.Callable[..., str], typing.List[str]]]]:
+    def detail(self) -> typing.List[typing.Dict[str, typing.Union[str, typing.Callable[[], str], typing.List[str]]]]:
         return [
             {"rule": "/bucket/<folder>/<file>", "endpoint": "_delete_file", "view_func": _delete_file, "methods": ["DELETE"]},
             {"rule": "/bucket/<folder>/<file>", "endpoint": "_file", "view_func": _file, "methods": ["GET"]},

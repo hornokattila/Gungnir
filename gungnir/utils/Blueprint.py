@@ -17,7 +17,7 @@ class Blueprint(abc.ABC, flask.Blueprint):
         self.werkzeug: werkzeug = werkzeug
 
     @abc.abstractmethod
-    def detail(self) -> typing.List[typing.Dict[str, typing.Union[str, typing.Callable[[], str], typing.List[str]]]]:
+    def detail(self) -> typing.List[typing.Dict[str, typing.Union[str, typing.Callable[..., str], typing.List[str]]]]:
         pass
 
     def launch(self) -> None:

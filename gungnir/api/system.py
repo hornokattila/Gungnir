@@ -5,7 +5,7 @@ from gungnir.utils.LoginManager import LoginManager
 
 
 class System(Blueprint):
-    def detail(self) -> typing.List[typing.Dict[str, typing.Union[str, typing.Callable[[], str], typing.List[str]]]]:
+    def detail(self) -> typing.List[typing.Dict[str, typing.Union[str, typing.Callable[..., str], typing.List[str]]]]:
         return [
             {"rule": "/detail", "endpoint": "_detail", "view_func": _detail, "methods": ["GET"]},
             {"rule": "/system", "endpoint": "_system", "view_func": _system, "methods": ["GET"]}

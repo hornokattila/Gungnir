@@ -7,7 +7,7 @@ from gungnir.api.system import system
 from gungnir.utils.Blueprint import Blueprint
 
 errors: typing.Dict[typing.Type[Exception], typing.Callable[[Exception], typing.Tuple[str, int]]] = {
-    PermissionError: lambda error: ("", 403)
+    PermissionError: lambda error: ("", 401)
 }
 
 urls: typing.List[Blueprint] = [

@@ -12,6 +12,7 @@ class LoginManager:
             raise PermissionError()
 
     def _shadow_darwin(self, username: str, password: str) -> None:
+        # TODO: Add authentication for MacOS.
         pass
 
     def _shadow_linux(self, username: str, password: str) -> None:
@@ -20,4 +21,5 @@ class LoginManager:
             raise PermissionError()
 
     def _shadow_win32(self, username: str, password: str) -> None:
+        # TODO: Add authentication for Windows.
         pass

@@ -8,7 +8,7 @@ class LoginManager:
     def shadow_loader(self, headers: typing.Dict[str, str]) -> None:
         try:
             getattr(self, "_shadow_{0}".format(sys.platform))(*base64.b64decode(headers.get("Authorization").replace("Basic ", "", 1)).decode().split(":"))
-        except (AttributeError, TypeError, ValueError):
+        except (AttributeError, KeyError, TypeError, ValueError):
             raise PermissionError()
 
     def _shadow_darwin(self, username: str, password: str) -> None:

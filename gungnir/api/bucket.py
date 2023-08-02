@@ -1,4 +1,5 @@
 import os
+import shutil
 import typing
 
 from gungnir.utils.Blueprint import Blueprint
@@ -9,6 +10,7 @@ class Bucket(Blueprint):
     def detail(self) -> typing.List[typing.Dict[str, typing.Union[str, typing.Callable[..., str], typing.List[str]]]]:
         return [
             {"rule": "/bucket/<folder>/<file>", "endpoint": "_delete_file", "view_func": _delete_file, "methods": ["DELETE"]},
+            {"rule": "/bucket/<folder>", "endpoint": "_delete_files", "view_func": _delete_files, "methods": ["DELETE"]},
             {"rule": "/bucket/<folder>/<file>", "endpoint": "_file", "view_func": _file, "methods": ["GET"]},
             {"rule": "/bucket/<folder>/<file>", "endpoint": "_put_file", "view_func": _put_file, "methods": ["PUT"]},
             {"rule": "/bucket/<folder>", "endpoint": "_files", "view_func": _files, "methods": ["GET"]}
@@ -20,6 +22,11 @@ bucket: Bucket = Bucket(LoginManager().shadow_loader)
 
 def _delete_file(folder: str, file: str) -> str:
     os.remove(os.path.join(bucket.config["bucket"], folder, file))
+    return ""
+
+
+def _delete_files(folder: str) -> str:
+    shutil.rmtree(os.path.join(bucket.config["bucket"], folder))
     return ""
 
 

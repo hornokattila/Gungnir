@@ -1,5 +1,4 @@
 import shutil
-import sys
 import tempfile
 
 from gungnir.utils.ThreadPool import ThreadPool

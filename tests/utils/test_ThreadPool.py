@@ -1,17 +1,27 @@
+import os
 import shutil
 import tempfile
+import time
 
 from gungnir.utils.ThreadPool import ThreadPool
 
 
 class TestThreadPool:
+    def setup_method(self, method) -> None:
+        if method.__name__ == "test_submit":
+            self.file: tempfile.NamedTemporaryFile = tempfile.NamedTemporaryFile(delete=False)
+            self.file.write(b"echo ACK")
+            self.file.close()
+            self.logger: tempfile.NamedTemporaryFile = tempfile.NamedTemporaryFile()
+            self.upload: str = tempfile.mkdtemp()
+
+    def teardown_method(self, method) -> None:
+        if method.__name__ == "test_submit":
+            os.unlink(self.file.name)
+            self.logger.close()
+            shutil.rmtree(self.upload)
+
     def test_submit(self) -> None:
-        file: tempfile.NamedTemporaryFile = tempfile.NamedTemporaryFile()
-        upload: str = tempfile.mkdtemp()
-        logger: str = tempfile.mkdtemp()
-        file.write(b"echo YOLO")
-        file.seek(0)
-        ThreadPool.submit(file.name, upload, logger)
-        file.close()
-        shutil.rmtree(upload)
-        shutil.rmtree(logger)
+        ThreadPool.submit(self.file.name, self.upload, self.logger.name)
+        time.sleep(.2)
+        assert self.logger.read() == b"ACK\n"

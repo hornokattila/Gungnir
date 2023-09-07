@@ -6,12 +6,12 @@ from tests.TestUtil import TestUtil
 
 
 class TestEnvironment:
-    def setup_method(self, method):
+    def setup_method(self, method) -> None:
         if method.__name__ == "test_decode":
             self.platform: str = sys.platform
             sys.platform = "dummy"
 
-    def teardown_method(self, method):
+    def teardown_method(self, method) -> None:
         if method.__name__ == "test_decode":
             sys.platform = self.platform
 

@@ -6,7 +6,7 @@ from gungnir.utils.LoginManager import LoginManager
 
 
 class Device(Blueprint):
-    def detail(self: typing.Self) -> typing.List[typing.Dict[str, typing.Union[str, typing.Callable[..., str], typing.List[str]]]]:
+    def detail(self) -> typing.List[typing.Dict[str, typing.Union[str, typing.Callable[..., str], typing.List[str]]]]:
         return [
             {"rule": "/device", "endpoint": "_device", "view_func": _device, "methods": ["GET"]},
             {"rule": "/health", "endpoint": "_health", "view_func": _health, "methods": ["GET"]}

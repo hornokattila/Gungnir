@@ -6,7 +6,7 @@ from gungnir.utils.Blueprint import Blueprint
 
 
 class Flask(flask.Flask):
-    def run(self: typing.Self, **settings: typing.Union[typing.Dict[str, typing.Dict[str, typing.Union[int, str, typing.Tuple[str, str]]]], typing.Dict[typing.Type[Exception], typing.Callable[[Exception], typing.Tuple[str, int]]], typing.List[Blueprint], str]) -> None:
+    def run(self, **settings: typing.Union[typing.Dict[str, typing.Dict[str, typing.Union[int, str, typing.Tuple[str, str]]]], typing.Dict[typing.Type[Exception], typing.Callable[[Exception], typing.Tuple[str, int]]], typing.List[Blueprint], str]) -> None:
         errors: typing.Dict[typing.Type[Exception], typing.Callable[[Exception], typing.Tuple[str, int]]] = settings["errors"]
         for rule in errors:
             super().register_error_handler(rule, errors[rule])

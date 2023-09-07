@@ -6,16 +6,16 @@ from tests.TestUtil import TestUtil
 
 
 class TestEnvironment:
-    def setup_method(self: typing.Self, method) -> None:
+    def setup_method(self, method) -> None:
         if method.__name__ == "test_decode":
             self.platform: str = sys.platform
             sys.platform = "dummy"
 
-    def teardown_method(self: typing.Self, method) -> None:
+    def teardown_method(self, method) -> None:
         if method.__name__ == "test_decode":
             sys.platform = self.platform
 
-    def test_decode(self: typing.Self) -> None:
+    def test_decode(self) -> None:
         assert TestUtil.catch(Environment.RUNNER.decode) == ProcessLookupError
         runner: typing.Dict[str, str] = Environment.RUNNER.value
         for key in runner.keys():

@@ -1,6 +1,5 @@
 import enum
 import sys
-import typing
 
 
 class Environment(enum.Enum):
@@ -10,7 +9,7 @@ class Environment(enum.Enum):
         "win32": "powershell"
     }
 
-    def decode(self: typing.Self) -> str:
+    def decode(self) -> str:
         try:
             return self.value[sys.platform]
         except KeyError:

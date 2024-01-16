@@ -1,4 +1,4 @@
-all: clean package install
+all: clean package deploy
 
 clean:
 	rm -rf .pytest_cache
@@ -7,5 +7,5 @@ clean:
 package: requirements.txt
 	${PYTHON} -m pip install -r requirements.txt --break-system-packages
 
-install: manage.py
+deploy: manage.py
 	${PYTHON} manage.py

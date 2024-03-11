@@ -7,3 +7,6 @@ from tests.TestUtil import TestUtil
 class TestDevice:
     def test_health(self: typing.Self) -> None:
         assert TestUtil.view_func(device, "/health", "GET") == ""
+
+    def test_system(self: typing.Self) -> None:
+        assert TestUtil.view_func(device, "/system", "GET") == "{}"

@@ -42,7 +42,9 @@ def _files(folder: str) -> str:
 
 
 def _put_file(folder: str, file: str) -> str:
-    path: str = os.path.join(bucket.config["bucket"], folder, bucket.werkzeug.utils.secure_filename(file))
+    path: str = os.path.join(bucket.config["bucket"], folder)
+    os.makedirs(path, exist_ok=True)
+    path = os.path.join(path, bucket.werkzeug.utils.secure_filename(file))
     with open(path, "wb") as file:
         file.write(bucket.flask.request.data)
     return ""

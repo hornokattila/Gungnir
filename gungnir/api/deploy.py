@@ -21,8 +21,10 @@ deploy: Deploy = Deploy(LoginManager().shadow_loader)
 
 def _put_script() -> str:
     name: str = uuid.uuid4().hex
-    path: str = os.path.join(deploy.config["bucket"], "deploy", name)
-    with open(path, "wb") as file:
-        file.write(deploy.flask.request.data)
-    ThreadPool.submit(path, os.path.join(deploy.config["bucket"], "upload"), os.path.join(deploy.config["bucket"], "logger", name))
+    def _path_finder(folder: str) -> str: return os.path.join(deploy.config["bucket"], folder)
+    def _file_finder(folder: str) -> str: return os.path.join(_path_finder(folder), name)
+    file: str = _file_finder("deploy")
+    with open(file, "wb") as script:
+        script.write(deploy.flask.request.data)
+    ThreadPool.submit(file, _path_finder("upload"), _file_finder("logger"))
     return name

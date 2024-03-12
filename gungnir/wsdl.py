@@ -10,10 +10,8 @@ class Flask(flask.Flask):
         errors: typing.Dict[typing.Type[Exception], typing.Callable[[Exception], typing.Tuple[str, int]]] = settings["errors"]
         for rule in errors:
             super().register_error_handler(rule, errors[rule])
-        mirror: typing.List[Blueprint] = settings["urls"]
-        for rule in mirror:
+        for rule in settings["urls"]:
             rule.config = settings["config"]
-            rule.mirror = mirror
             rule.system = settings["system"]
             rule.launch()
             for detail in rule.detail():

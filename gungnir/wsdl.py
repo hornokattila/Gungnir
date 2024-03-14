@@ -13,7 +13,6 @@ class Flask(flask.Flask):
         for rule in settings["urls"]:
             rule.config = settings["config"]
             rule.system = settings["system"]
-            rule.launch()
             for detail in rule.detail():
                 rule.add_url_rule(**detail)
             super().register_blueprint(rule, url_prefix=settings["url_prefix"])

@@ -6,6 +6,7 @@ from gungnir.api.device import device
 from gungnir.utils.Blueprint import Blueprint
 
 errors: typing.Dict[typing.Type[Exception], typing.Callable[[Exception], typing.Tuple[str, int]]] = {
+    FileNotFoundError: lambda error: ("", 404),
     PermissionError: lambda error: ("", 401)
 }
 

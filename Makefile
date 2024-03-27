@@ -1,4 +1,4 @@
-LOGGER  = /tmp/gungnir.log
+LOGGER  = /tmp/vaskaktusz/gungnir.log
 PYTHON := $(shell which python3.12)
 RUNNER  = ${PYTHON} ${CURDIR}/manage.py >> ${LOGGER} 2>&1
 

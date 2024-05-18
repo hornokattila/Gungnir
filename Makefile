@@ -1,6 +1,6 @@
 FOLDER := /tmp/vaskaktusz
 PYTHON := $(shell which python3.12)
-RUNNER := ${PYTHON} ${CURDIR}/manage.py > ${FOLDER}/gungnir.log 2>&1
+RUNNER := ${PYTHON} ${CURDIR}/manage.py >> ${FOLDER}/gungnir.log 2>&1
 
 all: clean package deploy
 

@@ -8,7 +8,7 @@ from gungnir.utils.ThreadPool import ThreadPool
 
 
 class Deploy(Blueprint):
-    def detail(self: typing.Self) -> typing.List[typing.Dict[str, typing.Union[str, typing.Callable[..., str], typing.List[str]]]]:
+    def details(self: typing.Self) -> typing.List[typing.Dict[str, typing.Union[str, typing.Callable[..., str], typing.List[str]]]]:
         return [{"rule": "/deploy", "endpoint": "_put_script", "view_func": _put_script, "methods": ["PUT"]}]
 
     @staticmethod

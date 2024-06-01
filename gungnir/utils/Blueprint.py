@@ -16,7 +16,7 @@ class Blueprint(abc.ABC, flask.Blueprint):
         self.werkzeug: werkzeug = werkzeug
 
     @abc.abstractmethod
-    def detail(self: typing.Self) -> typing.List[typing.Dict[str, typing.Union[str, typing.Callable[..., str], typing.List[str]]]]:
+    def details(self: typing.Self) -> typing.List[typing.Dict[str, typing.Union[str, typing.Callable[..., str], typing.List[str]]]]:
         pass
 
     def _request_loader(self: typing.Self) -> None:

@@ -3,7 +3,7 @@ import logging
 import settings
 from gungnir import urls
 from gungnir import wsdl
-from gungnir.utils.Logger import Logger
+from gungnir.utils.LogHandler import Logger
 
 if __name__ == "__main__":
     Logger(settings.settings.pop("logger")).basic_config(logging.getLogger())
